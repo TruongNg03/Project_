@@ -1,0 +1,136 @@
+.rights {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 1150px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.header {
+    width: 50%;
+    background-image: url(https://static.giotmauvang.org.vn/ihpstatic/LANDINGPAGE/ss1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 16px 0 0 16px;
+    margin-right: -0.5%;
+    padding: 12px 69px;
+    box-sizing: border-box;
+
+    h1 {
+        margin-top: 5px;
+        font-size: 36px;
+        line-height: 53px;
+    }
+
+    p {
+        margin-top: 10px;
+        font-size: 16px;
+        line-height: 22px;
+    }
+}
+
+.content {
+    width: 50%;
+    margin-left: -0.5%;
+    display: flex;
+    border-radius: 16px;
+    background-color: hsl(212, 68%, 34%);
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+}
+
+.card {
+    width: 100%;
+    padding: 44px 68px 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+    scroll-snap-align: center;
+
+    p {
+        font-size: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    ul {
+        font-size: 16px;
+        list-style: none;
+
+        li {
+            line-height: 22px;
+            margin-bottom: 10px;
+        }
+    }
+
+    ol {
+        margin-left: 20px;
+        margin-top: 10px;
+        font-size: 16px;
+        list-style: none;
+
+        li {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+@media (width <= 800px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .header,
+    .content {
+        width: 100%;
+    }
+
+    .header {
+        padding: 12px 20px;
+        border-radius: 0;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        height: 300px;
+
+        h1,
+        p {
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        h1 {
+            font-size: 30px;
+            line-height: 40px;
+        }
+
+        p {
+            font-size: 13px;
+        }
+    }
+
+    .card {
+        padding: 20px 48px 0;
+
+        p {
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        ul,
+        ol {
+            font-size: 13px;
+        }
+    }
+}

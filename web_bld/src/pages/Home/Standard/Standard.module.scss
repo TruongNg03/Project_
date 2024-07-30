@@ -1,0 +1,83 @@
+.standard {
+    width: 100%;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #1c5291;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 1150px;
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.header {
+    height: 100%;
+    border-radius: 8px;
+    background-image: url(https://static.giotmauvang.org.vn/ihpstatic/LANDINGPAGE/ss3.png);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    h1 {
+        padding: 16px 16px 0 16px;
+        font-size: 30px;
+        line-height: 45px;
+        text-align: right;
+    }
+}
+
+.group-item {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+    gap: 10px;
+}
+
+.item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+
+    span {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background-color: #386fd6;
+    }
+}
+
+@media (width <= 700px) {
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header,
+    .group-item,
+    .item {
+        width: 100%;
+    }
+
+    .header,
+    .item {
+        min-height: 130px;
+    }
+
+    .header {
+        h1 {
+            text-align: center;
+        }
+    }
+}

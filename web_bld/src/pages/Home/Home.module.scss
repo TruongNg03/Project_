@@ -1,0 +1,127 @@
+.home {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // prevent user selector...
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.sec-1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-image: url('https://static.giotmauvang.org.vn/ihpstatic/LANDINGPAGE/hero.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.sec-1-wrapper {
+    width: 1150px;
+    max-width: 89%;
+    height: 100%;
+    margin: 0 30px;
+    padding: 25px 10px;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sec-1-content {
+    max-width: 580px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+
+    strong {
+        line-height: 45px;
+        font-size: 36px;
+    }
+
+    p {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+}
+
+.sec-1-search {
+    // height: 350px;
+    margin-top: 50px;
+    border-radius: 8px;
+    display: flex;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.search-label {
+    width: calc(100% - 155px);
+}
+
+.search-label-wrapper {
+    padding: 20px 15px;
+    box-sizing: border-box;
+
+    p {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+}
+
+.search-date {
+    width: 100%;
+    position: relative;
+    min-height: 52px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(187, 215, 253);
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    input {
+        width: 100%;
+        padding: 16px;
+        border: 0px;
+        margin: 0px;
+        display: block;
+        background: none;
+        box-sizing: border-box;
+        font-size: 18px;
+        color: rgb(51, 51, 51);
+    }
+
+    i {
+        padding-left: 10px;
+        padding-right: 16px;
+        color: rgb(122, 122, 122);
+        display: flex;
+        align-items: center;
+        align-items: center;
+    }
+}
+
+.search-btn {
+    width: 155px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: #386fd6;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #5f8ee5;
+    }
+}

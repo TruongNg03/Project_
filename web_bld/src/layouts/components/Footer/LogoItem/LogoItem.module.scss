@@ -1,0 +1,16 @@
+.title {
+    font-size: 1.4rem;
+    color: #7a7a7a;
+    font-weight: 600;
+}
+
+.listImage {
+    display: flex;
+    gap: 16px;
+    padding-top: 15px;
+}
+
+.image {
+    height: 38px;
+    object-fit: cover;
+}

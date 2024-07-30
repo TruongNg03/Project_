@@ -1,0 +1,93 @@
+.footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Microsoft YaHei', sans-serif;
+
+    .wrapper {
+        width: 100%;
+        color: var(--white);
+        background: #003364;
+    }
+}
+
+.info {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 10px;
+
+    .logo-blood {
+        padding: 40px 0 0 0;
+        width: 80px;
+    }
+}
+
+//
+.content {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 55% 40%;
+    gap: 5%;
+    margin-top: 25px;
+}
+
+.content-item {
+    padding-bottom: 8px;
+    position: relative;
+    width: fit-content;
+    font-size: 2rem;
+    line-height: 1.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    &::after {
+        content: '';
+        left: 0;
+        position: absolute;
+        bottom: -1px;
+        width: 100%;
+        background-color: var(--white);
+        height: 2px;
+    }
+}
+
+.support {
+    padding: 0;
+    margin: 0;
+
+    .sp-link {
+        margin-top: 20px;
+        margin-bottom: 32px;
+        font-weight: bold;
+        font-size: 1.6rem;
+        color: var(--white);
+    }
+}
+
+//
+.logoList {
+    width: 100%;
+    max-width: 1150px;
+    padding: 27px 0;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: space-around;
+}
+
+//
+.copyright {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #7a7a7a;
+}
+
+@media (width <= 800px) {
+    .content {
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,53 @@
+.contact {
+    display: grid;
+    grid-template-columns: 47.5% 47.5%;
+    gap: 5%;
+    padding-bottom: 12px;
+}
+
+.address {
+    margin-top: 20px;
+    margin-bottom: 32px;
+
+    .location {
+        font-weight: bold;
+        font-size: 1.6rem;
+        line-height: 1.5rem;
+    }
+}
+
+.pos-item {
+    padding-top: 12px;
+    padding-bottom: 8px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+
+    .pos-content {
+        max-width: 240px;
+        font-size: 1.4rem;
+    }
+}
+
+.phone {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 18px;
+
+    .phone-num {
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-decoration:underline;
+    }
+}
+
+.phone-item {
+    display: flex;
+    gap: 8px;
+
+    .call-icon {
+        width: 20px;
+        height: 20px;
+    }
+}

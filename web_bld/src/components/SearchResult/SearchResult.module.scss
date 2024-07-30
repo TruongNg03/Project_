@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 6px 16px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+// .icon {
+//     margin-right: 9px;
+//     color: rgba(22, 24, 35, 0.35);
+//     font-size: 14px;
+// }
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 16px;
+}
+
+.result {
+    font-size: 16px;
+    font-weight: 400;
+}

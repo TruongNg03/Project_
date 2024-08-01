@@ -12,7 +12,7 @@ function Menu() {
                 <MenuItem title="Home" to={config.routes.home} />
                 <MenuItem title="Faq" to={config.routes.faq} />
                 <MenuItem title="News" to={config.routes.news} />
-                <MenuItem title="Contact" to={config.routes.login} />
+                <MenuItem title="Profile" to={config.routes.profile} />
             </div>
         </nav>
     );

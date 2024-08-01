@@ -8,6 +8,7 @@ const images = {
     fu: require('~/assets/images/fu.png'),
     download: require('~/assets/images/download.png'),
     hero: require('~/assets/images/hero.png'),
+    floatingTop: require('~/assets/images/floatingTop.png'),
 };
 
 export default images;

@@ -2,7 +2,7 @@ const routes = {
     home: '/',
     faq: '/faq',
     news: '/news',
-    profile: '/@:nickname',
+    profile: '/profile',
     login: '/login',
     register: '/register',
 };

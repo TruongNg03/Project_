@@ -1,3 +1,7 @@
+* {
+    scroll-behavior: smooth;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -13,4 +17,19 @@
 
 .content {
     flex: 1;
+}
+
+.scroll-top-btn {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+
+    .image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
 }

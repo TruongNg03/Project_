@@ -9,6 +9,7 @@ const images = {
     download: require('~/assets/images/download.png'),
     hero: require('~/assets/images/hero.png'),
     floatingTop: require('~/assets/images/floatingTop.png'),
+    backgroundProfile: require('~/assets/images/background-profile.webp'),
 };
 
 export default images;

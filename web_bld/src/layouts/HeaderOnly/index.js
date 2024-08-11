@@ -22,8 +22,10 @@ function HeaderOnly({ children }) {
         setShow(false);
     };
 
+    window.addEventListener('scroll', handleChange);
+
     return (
-        <div className={cx('wrapper')} onWheel={handleChange}>
+        <div className={cx('wrapper')}>
             <Header />
             <div className={cx('container')} style={{ width: '100%' }}>
                 {children}

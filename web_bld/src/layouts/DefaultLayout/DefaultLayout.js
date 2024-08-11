@@ -25,8 +25,10 @@ function DefaultLayout({ children }) {
         setShow(false);
     };
 
+    window.addEventListener('scroll', handleChange);
+
     return (
-        <div className={cx('wrapper')} onWheel={handleChange}>
+        <div className={cx('wrapper')}>
             <Header />
             <Menu />
             <div className="container" style={{ width: '100%' }}>

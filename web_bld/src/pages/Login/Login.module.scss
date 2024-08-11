@@ -11,7 +11,7 @@
     width: 450px;
     transform: translate(-50%, -50%);
     border-radius: 28px;
-    border: 1px solid #9ea2ae;     // doi sau
+    border: 1px solid #9ea2ae; // doi sau
     font-family: 'Microsoft YaHei', sans-serif;
     background-color: #fafafc;
 }
@@ -23,7 +23,6 @@
 
 .container {
     text-align: center;
-
 }
 
 .form {
@@ -71,4 +70,5 @@
     font-size: 16px;
     background-color: transparent;
     background-size: cover;
+    cursor: pointer;
 }

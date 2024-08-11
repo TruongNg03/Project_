@@ -10,6 +10,9 @@ const images = {
     hero: require('~/assets/images/hero.png'),
     floatingTop: require('~/assets/images/floatingTop.png'),
     backgroundProfile: require('~/assets/images/background-profile.webp'),
+    backgroundItem: require('~/assets/images/background-item.png'),
+    iconNote: require('~/assets/images/icon-note.png'),
+    noActivity: require('~/assets/images/no-activity.png'),
 };
 
 export default images;

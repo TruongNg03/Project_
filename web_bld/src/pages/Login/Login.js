@@ -128,9 +128,9 @@ function Login() {
                     <Button custom disabled={disabled} onClick={checkLogin} type="submit">
                         Log In
                     </Button>
-
-                    {/* <button className={cx('close')}><CloseIcon /></button> */}
                 </form>
+
+                {/* <button className={cx('close')}><CloseIcon /></button> */}
                 <div className={cx('link')}>
                     <Link className={cx('link-item')}>Having Problem?</Link>
                     <Link className={cx('link-item')} to={config.routes.register}>

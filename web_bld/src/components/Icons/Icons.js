@@ -33,15 +33,37 @@ export const SearchIcon = ({ width = '2.4rem', height = '2.4rem', className }) =
 );
 
 export const CloseIcon = ({ width = '2.5rem', height = '2.5rem', className }) => (
+    <svg className={className} width={width} height={height} viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <path
+            fill="currentColor"
+            d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z"
+        ></path>
+    </svg>
+);
+
+export const HumanIcon = ({ width = '2rem', height = '2rem', className }) => (
     <svg
+        xmlns="http://www.w3.org/2000/svg"
         className={className}
         width={width}
         height={height}
-        viewBox="0 0 1024 1024"
-        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
     >
-        <path fill="currentColor" 
-            d="M764.288 214.592 512 466.88 259.712 214.592a31.936 31.936 0 0 0-45.12 45.12L466.752 512 214.528 764.224a31.936 31.936 0 1 0 45.12 45.184L512 557.184l252.288 252.288a31.936 31.936 0 0 0 45.12-45.12L557.12 512.064l252.288-252.352a31.936 31.936 0 1 0-45.12-45.184z"
-        ></path>
+        <g id="Group_15745" data-name="Group 15745" transform="translate(-2165 -5912.14)">
+            <rect
+                id="Rectangle_5035"
+                data-name="Rectangle 5035"
+                width="20"
+                height="20"
+                transform="translate(2165 5912.14)"
+                fill="none"
+            ></rect>
+            <path
+                id="PhUsersBold"
+                d="M12.872,51.956a4.537,4.537,0,1,0-5.843,0,7.1,7.1,0,0,0-2.879,2.38.851.851,0,0,0,1.391.98,5.389,5.389,0,0,1,8.818,0,.851.851,0,1,0,1.391-.98A7.1,7.1,0,0,0,12.872,51.956ZM7.115,48.488A2.836,2.836,0,1,1,9.95,51.324,2.836,2.836,0,0,1,7.115,48.488Zm14.209,7.033a.851.851,0,0,1-1.185-.206,5.4,5.4,0,0,0-4.409-2.29.851.851,0,1,1,0-1.7,2.836,2.836,0,1,0-.77-5.566A.851.851,0,0,1,14.5,44.12a4.536,4.536,0,0,1,4.152,7.836,7.1,7.1,0,0,1,2.879,2.38.851.851,0,0,1-.206,1.185Z"
+                transform="translate(2162.005 5872.192)"
+                fill="currentColor"
+            ></path>
+        </g>
     </svg>
 );

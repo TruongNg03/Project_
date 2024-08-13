@@ -10,8 +10,14 @@ const User = new Schema(
     username: { type: String, require: true, unique: true },
     email: { type: String, require: true },
     password: { type: String, require: true },
+    name: { type: String, require: true },
+    identity: { type: Number, require: true, unique: true },
+    phone: { type: Number },
+    date: { type: Date },
+    // type
     admin: { type: Boolean, default: false },
     employee: { type: Boolean, default: false },
+    user: { type: Boolean, default: true },
   },
   {
     timestamps: true,

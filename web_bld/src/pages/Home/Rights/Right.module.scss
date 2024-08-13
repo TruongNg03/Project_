@@ -39,9 +39,9 @@
 }
 
 .content {
-    width: 50%;
     margin-left: -0.5%;
     display: flex;
+    flex: 1;
     border-radius: 16px;
     background-color: hsl(212, 68%, 34%);
     overflow-x: scroll;

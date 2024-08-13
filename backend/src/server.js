@@ -3,8 +3,10 @@ const morgan = require('morgan');
 const path = require('path');
 const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
+
+// middleware
+const SortMiddleware = require('./app/middlewares/SortMiddleware');
+
 const app = express();
 const port = 8080;
 
@@ -13,9 +15,6 @@ const route = require('./routes');
 
 //db
 db.connect();
-
-app.use(cors());
-app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -26,7 +25,10 @@ app.use(
 );
 app.use(express.json());
 
-// app.use(methodOverride('_method'));
+app.use(methodOverride('_method'));
+
+// custom middleware
+app.use(SortMiddleware);
 
 // http logger
 // app.use(morgan('combined'));
@@ -35,7 +37,7 @@ app.engine(
   'hbs',
   handlebars.engine({
     extname: '.hbs',
-    // helpers: require('')
+    helpers: require('./helpers/handlebars'),
   }),
 );
 app.set('view engine', 'hbs');

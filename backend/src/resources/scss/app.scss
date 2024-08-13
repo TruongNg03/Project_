@@ -1,3 +1,19 @@
 .navbar-collapse {
   flex-grow: 0;
 }
+
+.container {
+  a {
+    text-decoration: none;
+  }
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-select-option {
+  width: 200px;
+  margin: 0 16px;
+}

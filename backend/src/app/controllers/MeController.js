@@ -7,12 +7,12 @@ class MeController {
   // [GET] /me/stored/activities
   storedActivities(req, res, next) {
     Promise.all([
-      Activity.find({}).sortable(req),
-      Activity.countDocumentsWithDeleted({ deletedAt: true })
-    ])
-      .then(([activities, deleteCount]) => {
+        Activity.find({}).sortable(req),
+        Activity.countDocumentsWithDeleted({ deleted: true })
+      ])
+      .then(([activities, deletedCount]) => {
         res.render('me/stored-activities', {
-          deleteCount,
+          deletedCount,
           activities: multipleMongooseToObject(activities),
         });
       })
@@ -22,6 +22,7 @@ class MeController {
   // [GET] /me/trash/activities
   trashActivities(req, res, next) {
     Activity.findWithDeleted({ deleted: true })
+      .sortable(req)
       .lean()
       .then((activities) => res.render('me/trash-activities', { activities }))
       .catch(next);

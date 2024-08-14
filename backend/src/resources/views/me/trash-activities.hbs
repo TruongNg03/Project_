@@ -4,16 +4,10 @@
     <h3>Hoạt động đã xóa</h3>
 
     <div class='mt-4 d-flex align-items-center'>
-      <div class='form-check'>
-        <input class='form-check-input' type='checkbox' value='' id='check-all' />
-        <label class='form-check-label' for='check-all'>
-          Chọn tất cả
-        </label>
-      </div>
       <select class='form-control form-control-sm checkbox-select-option' name='action' required>
         <option value=''>-- Open this select menu --</option>
         <option value='restored'>Khôi phục</option>
-        <option value='delete'>Xóa vĩnh viễn</option>
+        <option value='delete-force'>Xóa vĩnh viễn</option>
       </select>
 
       <button class='btn btn-primary btn-sm btn-check-all-submit' disabled>Thực hiện</button>
@@ -23,6 +17,11 @@
   <table class='table mt-4'>
     <thead>
       <tr>
+        <th scope='col'>
+          <div class='form-check'>
+            <input class='form-check-input' type='checkbox' value='' id='checkbox-all' />
+          </div>
+        </th>
         <th scope='col'>#</th>
         <th scope='col'>
           Title
@@ -33,7 +32,6 @@
         <th scope='col'>Time Start</th>
         <th scope='col'>Total</th>
         <th scope='col'>Max</th>
-        <th scope='col'>Create At</th>
         <th scope='col'>Delete At</th>
         <th scope='col'></th>
       </tr>
@@ -41,6 +39,11 @@
     <tbody>
       {{#each activities}}
         <tr>
+          <td>
+            <div class='form-check'>
+              <input class='form-check-input' type='checkbox' name='activityIds[]' value='{{this._id}}' />
+            </div>
+          </td>
           <th scope='row'>{{sum @index 1}}</th>
           <td>{{this.title}}</td>
           <td>{{this.locate}}</td>
@@ -48,7 +51,6 @@
           <td>{{this.timeStart}}</td>
           <td>{{this.amount}}</td>
           <td>{{this.max}}</td>
-          <td>{{this.createdAt}}</td>
           <td>{{this.deletedAt}}</td>
           <td>
             <a href='' class='btn btn-link btn-restored' data-id='{{this._id}}'>Khôi phục</a>
@@ -65,7 +67,7 @@
         <tr>
           <td colspan='9' class='text-center' style='border-style: none;'>
             Thùng rác trống.
-            <a href='/me/stored/activities' class='text-decoration-none'>Danh sách khóa học</a>
+            <a href='/me/stored/activities' class='text-decoration-none'>Danh sách hoạt động</a>
           </td>
         </tr>
       {{/each}}
@@ -78,11 +80,11 @@
   <div class='modal-dialog'>
     <div class='modal-content'>
       <div class='modal-header'>
-        <h5 class='modal-title'>Xóa khóa học?</h5>
+        <h5 class='modal-title'>Xóa hoạt động?</h5>
         <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
       </div>
       <div class='modal-body'>
-        <p>Bạn chắc chắn muốn xóa khóa học này?</p>
+        <p>Bạn chắc chắn muốn xóa hoạt động học này?</p>
       </div>
       <div class='modal-footer'>
         <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Hủy</button>
@@ -100,8 +102,12 @@
     var activityId;
     var deleteForm = document.forms['delete-activity-form'];
     var restoreForm = document.forms['restore-activity-form'];
+    var containerForm = $('form[name="container-form"]')
     var btnDeleteActivity = document.getElementById('btn-delete-activity-modal');
     var restoreBtn = $('.btn-restored');
+    var checkboxAll = $('#checkbox-all');
+    var activityItemCheckbox = $('input[name="activityIds[]"]');
+    var btnCheckAllSubmit = $('.btn-check-all-submit');
 
     // when dialog confirm clicked
     $('#delete-activity-modal').on('show.bs.modal', function (event) {
@@ -122,6 +128,30 @@
     btnDeleteActivity.onclick = function () {
       deleteForm.action = '/activities/' + activityId + '/force?_method=DELETE';
       deleteForm.submit();
+    }
+
+    // checkbox all
+    checkboxAll.change(function () {
+      var isCheckedAll = $(this).prop('checked');
+      activityItemCheckbox.prop('checked', isCheckedAll);
+      renderCheckAllSubmitBtn();
+    })
+
+    // activity item checkbox change
+    activityItemCheckbox.change(function () {
+      var isCheckedAll = activityItemCheckbox.length === $('input[name="activityIds[]"]:checked').length;
+      checkboxAll.prop('checked', isCheckedAll);
+      renderCheckAllSubmitBtn();
+    })
+
+    // re-render check all submit btn
+    function renderCheckAllSubmitBtn () {
+      var checkedCount = $('input[name="activityIds[]"]:checked').length;
+      if(checkedCount) {
+        btnCheckAllSubmit.removeAttr('disabled', false);
+      } else {
+        btnCheckAllSubmit.attr('disabled', true);
+      }
     }
   });
 </script>

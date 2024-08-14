@@ -34,7 +34,7 @@ Activity.query.sortable = function (req) {
 // add plugin
 mongoose.plugin(slug);
 Activity.plugin(mongooseDelete, {
-  // deletedAt: true,
+  deletedAt: true,
   overrideMethods: 'all',
 });
 

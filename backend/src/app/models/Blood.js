@@ -16,6 +16,9 @@ const Blood = new Schema(
 );
 
 // add plugin
-Blood.plugin(mongooseDelete);
+Blood.plugin(mongooseDelete, {
+  deletedAt: true,
+  overrideMethods: 'all',
+});
 
 module.exports = mongoose.model('Blood', Blood);

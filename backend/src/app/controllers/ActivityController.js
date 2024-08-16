@@ -15,14 +15,20 @@ class ActivityController {
       .catch(next);
   }
 
-  // [GET] /:id/edit
+  // [GET] /:id/edit (render edit page)
   edit(req, res, next) {
-    res.send('edit');
+    Activity.findById(req.params.id)
+      .lean()
+      .then((activity) => res.render('activities/edit', { activity }))
+      .catch(next);
   }
 
-  // [PUT] /:id (update)
+  // [PUT] /activities/:id (update activity)
   update(req, res, next) {
-    res.send('update');
+    Activity.updateOne({ _id: req.params.id }, req.body)
+      .lean()
+      .then(() => res.redirect('/me/stored/activities'))
+      .catch(next);
   }
 
   // [DELETE] /activities/:id

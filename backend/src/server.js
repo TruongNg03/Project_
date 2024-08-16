@@ -3,6 +3,10 @@ const morgan = require('morgan');
 const path = require('path');
 const methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+// .env
+require('dotenv').config();
 
 // middleware
 const SortMiddleware = require('./app/middlewares/SortMiddleware');
@@ -27,11 +31,25 @@ app.use(express.json());
 
 app.use(methodOverride('_method'));
 
+app.use(cors());
+app.use(cookieParser());
+
 // custom middleware
 app.use(SortMiddleware);
 
 // http logger
 // app.use(morgan('combined'));
+
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || 'Something went wrong!';
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: err.stack,
+  });
+});
 
 app.engine(
   'hbs',

@@ -10,10 +10,10 @@ const User = new Schema(
     username: { type: String, require: true, unique: true },
     email: { type: String, require: true },
     password: { type: String, require: true },
-    name: { type: String, require: true },
+    name: { type: String, default: '' },
     identity: { type: Number, require: true, unique: true },
-    phone: { type: Number },
-    date: { type: Date },
+    phone: { type: Number, default: null },
+    date: { type: Date, default: null },
     // type
     admin: { type: Boolean, default: false },
     employee: { type: Boolean, default: false },
@@ -23,5 +23,10 @@ const User = new Schema(
     timestamps: true,
   },
 );
+
+User.plugin(mongooseDelete, {
+  deletedAt: true,
+  overrideMethods: 'all',
+});
 
 module.exports = mongoose.model('User', User);

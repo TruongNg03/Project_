@@ -1,35 +1,7 @@
-const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Profile = require('../models/Profile');
 
 class UserController {
-  // [GET] /authentication
-  authentication(req, res, next) {
-    const token = req.cookies.access_token;
-    
-  }
-
-  // [GET] /user/create
-  create(req, res, next) {
-    res.render('users/create');
-  }
-
-  // [POST] /user/store
-  store(req, res, next) {
-    const user = new User(req.body);
-    user
-      .save()
-      .then(() => res.redirect('/me/stored/users'))
-      .catch(next);
-  }
-
-  // [GET] /:id/edit (render edit page)
-  edit(req, res, next) {
-    User.findById(req.params.id)
-      .lean()
-      .then((user) => res.render('users/edit', { user }))
-      .catch(next);
-  }
-
   // [PUT] /users/:id (update user)
   update(req, res, next) {
     User.updateOne({ _id: req.params.id }, req.body)

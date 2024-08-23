@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Profile = require('../models/Profile');
 
 class AuthController {
   index(req, res, next) {
@@ -11,16 +12,26 @@ class AuthController {
   register(req, res, next) {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
+
     const user = new User({
-      username: req.body.username,
-      email: req.body.email,
+      ...req.body,
       password: hash,
-      identity: req.body.identity,
     });
 
     user
       .save()
-      .then(() => res.status(200).send('User has been created.'))
+      .then((user) => {
+        // create default user info
+        const profile = new Profile({
+          ...req.body,
+          userId: user._id,
+        });
+
+        profile
+          .save()
+          .then(() => res.status(200).send('User has been created.'))
+          .catch(next);
+      })
       .catch(next);
   }
 
@@ -36,7 +47,7 @@ class AuthController {
       .then((user) => {
         // not alert on screen
         if (!user) {
-          return res.send('User not found!');
+          return res.status(400).json({ message: 'Wrong username or password!' });
         }
 
         // not alert on screen
@@ -44,22 +55,22 @@ class AuthController {
           .compare(pass, user.password)
           .then((result) => {
             if (!result) {
-              res.send('Password is incorrect!');
-            } else {
-              const token = jwt.sign(
-                { id: user._id, admin: user.admin },
-                process.env.JWT_SECRET, // 'admin_00' -> process.env.JWt_SECRET
-                { expiresIn: '3600' }, //1 hour
-              );
-
-              const { password, ...otherDetails } = user._doc;
-              res
-                .cookie('access_token', token, {
-                  httpOnly: true,
-                })
-                .status(200)
-                .json({ ...otherDetails });
+              return res.status(400).json({ message: 'Wrong username or password!' });
             }
+
+            const token = jwt.sign(
+              { id: user._id, admin: user.admin },
+              process.env.JWT_SECRET, // 'admin_00' -> process.env.JWt_SECRET
+              { expiresIn: '1 days' }, // 10s
+            );
+
+            const { password, ...otherDetails } = user._doc;
+            res
+              .cookie('access_token', token, {
+                httpOnly: true,
+              })
+              .status(200)
+              .json({ ...otherDetails });
           })
           .catch(next);
       })

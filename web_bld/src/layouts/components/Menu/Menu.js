@@ -11,8 +11,8 @@ function Menu() {
             <div className={cx('inner')}>
                 <MenuItem title="Home" to={config.routes.home} />
                 <MenuItem title="Faq" to={config.routes.faq} />
+                <MenuItem title="Event" to={config.routes.event} />
                 <MenuItem title="News" to={config.routes.news} />
-                <MenuItem title="Profile" to={config.routes.profile} />
             </div>
         </nav>
     );

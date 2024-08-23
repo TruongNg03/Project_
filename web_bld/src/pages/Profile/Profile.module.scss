@@ -89,14 +89,15 @@
 
     .name {
         font-size: 19px;
-        color: #000;
+        color: #fff;
+        margin-bottom: 0;
     }
 }
 
 .title {
     position: absolute;
-    top: -60px;
-    height: 60px;
+    top: -76px;
+    height: 76px;
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -397,7 +398,7 @@
 
 @media (width <= 700px) {
     .wrapper-content {
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 20px;
     }
 
@@ -424,6 +425,7 @@
     .contact {
         align-items: center;
         padding-bottom: 10px;
+        display: none; // hide contact
 
         span {
             text-align: center;

@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
-const slug = require('mongoose-slug-updater');
 const mongooseDelete = require('mongoose-delete');
-const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const Schema = mongoose.Schema;
 
 const User = new Schema(
   {
-    username: { type: String, require: true, unique: true },
-    email: { type: String, require: true },
+    username: { type: String, require: true, unique: true }, // email
     password: { type: String, require: true },
-    name: { type: String, default: '' },
+    name: { type: String, default: null },
     identity: { type: Number, require: true, unique: true },
     phone: { type: Number, default: null },
     date: { type: Date, default: null },
@@ -23,6 +20,18 @@ const User = new Schema(
     timestamps: true,
   },
 );
+
+//
+User.query.sortable = function (req) {
+  if (req.query.hasOwnProperty('_sort')) {
+    const isValidType = ['asc', 'desc'].includes(req.query.type);
+    return this.sort({
+      [req.query.column]: isValidType ? req.query.type : 'asc',
+    });
+  }
+
+  return this;
+};
 
 User.plugin(mongooseDelete, {
   deletedAt: true,

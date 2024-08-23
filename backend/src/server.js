@@ -10,6 +10,7 @@ require('dotenv').config();
 
 // middleware
 const SortMiddleware = require('./app/middlewares/SortMiddleware');
+// const CheckToken = require('./app/middlewares/auth');
 
 const app = express();
 const port = 8080;
@@ -36,6 +37,7 @@ app.use(cookieParser());
 
 // custom middleware
 app.use(SortMiddleware);
+// app.use(CheckToken);
 
 // http logger
 // app.use(morgan('combined'));

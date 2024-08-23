@@ -11,7 +11,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 // import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import config from '~/config';
 // import Button from '~/components/Button';
@@ -21,7 +22,8 @@ import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
 import Search from '../Search';
 import images from '~/assets/images';
-import { useState } from 'react';
+import { AuthContext } from '~/context/AuthContext';
+import routes from '~/';
 
 const cx = classNames.bind(styles);
 
@@ -48,7 +50,7 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
         title: 'Feedback',
-        to: '/',
+        // to: '/',
     },
     {
         icon: <FontAwesomeIcon icon={faSignOut} />,
@@ -62,24 +64,25 @@ const userMenu = [
     {
         icon: <FontAwesomeIcon icon={faUser} />,
         title: 'View profile',
-        to: '/',
+        to: config.routes.profile,
     },
     {
         icon: <FontAwesomeIcon icon={faGear} />,
         title: 'Setting',
-        to: '/',
+        // to: '/',
     },
     ...MENU_ITEMS.slice(0, 2),
     {
         icon: <FontAwesomeIcon icon={faSignOut} />,
         title: 'Log out',
-        to: config.routes.home,
+        to: '/blank-page',
         separate: true,
     },
 ];
 
 function Header() {
-    const [currentUser, setCurrentUser] = useState(false);
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     //
     const handleMenuChange = (menuItem) => {
@@ -91,17 +94,16 @@ function Header() {
         }
         switch (menuItem.title) {
             case 'Log in':
-                // setCurrentUser(true)
+                //
                 break;
             case 'Log out':
-                setCurrentUser(false);
+                // localStorage.clear();
+                localStorage.removeItem('user');
+                navigate('/');
+                window.location.reload(false);
                 break;
             default:
         }
-    };
-
-    const login = () => {
-        setCurrentUser(true);
     };
 
     return (
@@ -116,24 +118,7 @@ function Header() {
 
                 {/* action - login account */}
                 <div className={cx('action')}>
-                    {/* {currentUser ? (
-                        <>
-                            <Tippy delay={[0, 200]} content="Upload" placement='bottom'>
-                                <button className={cx('action-btn')}>
-                                    <UploadIcon />
-                                </button>
-                            </Tippy>
-                        </>
-                    ) : (
-                        <>
-                            <Button rounded  onClick={login}>
-                                Log in
-                            </Button>
-                        </>
-                    )}
-                    */}
-
-                    {currentUser ? (
+                    {user ? (
                         <Menu items={userMenu} onChange={handleMenuChange}>
                             <Image
                                 className={cx('user-avatar')}

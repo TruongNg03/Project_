@@ -1,16 +1,42 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import images from '~/assets/images';
 import Item from '~/pages/Profile/Item';
-import Activity from '~/pages/Profile/Activity';
+import Activity from '~/components/Activity';
+import { AuthContext } from '~/context/AuthContext';
 
 const cx = classNames.bind(styles);
 
 function Profile() {
     const [fixedHeader, setFixedHeader] = useState(false);
     const [fixedContact, setFixedContact] = useState(false);
-    const [showActivity, setShowAvtivity] = useState(true);
+    const [activityResult, setActivityResult] = useState(null);
+    const [profileResult, setProfileResult] = useState(null);
+
+    const { user } = useContext(AuthContext);
+
+    // fetch api
+    useEffect(() => {
+        async function getActivities() {
+            const activity = await fetch('http://localhost:8080/me/stored/activities');
+            const activityData = await activity.json();
+
+            // get profile
+            const profile = await fetch(`http://localhost:8080/me/stored/users-account?id=${user._id}`);
+            const profileData = await profile.json();
+
+            if (activityData.length === 0) {
+                setActivityResult(null);
+            } else {
+                setActivityResult(activityData);
+            }
+
+            setProfileResult(profileData);
+        }
+
+        getActivities();
+    }, []);
 
     const headerPage = cx({
         header_page: true,
@@ -44,7 +70,7 @@ function Profile() {
             setFixedHeader(false);
         }
 
-        if (window.scrollY >= 775 && window.innerWidth > 700) {
+        if (window.scrollY >= 850 && window.innerWidth > 700) {
             setFixedContact(true);
         } else {
             setFixedContact(false);
@@ -72,9 +98,13 @@ function Profile() {
                         </div>
                         <div className={cx('name-title')}>
                             <div className={cx('title')}>
-                                <p>Default signature given to everyone~</p>
+                                {profileResult ? (
+                                    <span className={cx('name')}>{profileResult.name || user.username}</span>
+                                ) : (
+                                    <span className={cx('name')}>{user.username}</span>
+                                )}
+                                <p>{user.title || 'Default signature given to everyone~'}</p>
                             </div>
-                            <span className={cx('name')}>Truong Ng</span>
                         </div>
                         <div className={edit}>
                             <button className={cx('edit-btn')}>Edit</button>
@@ -104,37 +134,28 @@ function Profile() {
                                 <section className={cx('explore-around')}>
                                     <strong>Activities</strong>
                                 </section>
-                                {!showActivity ? (
+                                {!activityResult ? (
                                     <div className={cx('no-activity')}>
                                         <img src={images.noActivity} alt="no-activity-img" />
                                         <p>You don't have anything~</p>
                                     </div>
                                 ) : (
                                     <div className={cx('list-activity')}>
-                                        <Activity
+                                        {/* <Activity
                                             title="Hiến máu - Bệnh viện Truyền máu Huyết học"
                                             locate="Địa chỉ: 151 Nguyễn Đức Cảnh, Tương Mai, Hoàng Mai, Hà Nội"
                                             timeActive="Thời gian hoạt động: 11/08/2024 - Từ 07:00 đến 16:30"
                                             timeStart="Thời gian hiến máu: 07:00 - 11:30; 13:30 - 16:00"
                                             amount="40"
                                             max="50"
-                                        />
-                                        <Activity
-                                            title="Hiến máu - Bệnh viện Truyền máu Huyết học"
-                                            locate="Địa chỉ: 151 Nguyễn Đức Cảnh, Tương Mai, Hoàng Mai, Hà Nội"
-                                            timeActive="Thời gian hoạt động: 11/08/2024 - Từ 07:00 đến 16:30"
-                                            timeStart="Thời gian hiến máu: 07:00 - 11:30; 13:30 - 16:00"
-                                            amount="40"
-                                            max="50"
-                                        />
-                                        <Activity
-                                            title="Hiến máu - Bệnh viện Truyền máu Huyết học"
-                                            locate="Địa chỉ: 151 Nguyễn Đức Cảnh, Tương Mai, Hoàng Mai, Hà Nội"
-                                            timeActive="Thời gian hoạt động: 11/08/2024 - Từ 07:00 đến 16:30"
-                                            timeStart="Thời gian hiến máu: 07:00 - 11:30; 13:30 - 16:00"
-                                            amount="40"
-                                            max="50"
-                                        />
+                                        />*/}
+                                        {activityResult ? (
+                                            activityResult.map((activity) => (
+                                                <Activity key={activity._id} activity={activity} button='Cancel'/>
+                                            ))
+                                        ) : (
+                                            <></>
+                                        )}
                                     </div>
                                 )}
                             </div>
@@ -145,41 +166,53 @@ function Profile() {
                             <div className={cx('profile-user')}>
                                 <strong>Profile Information</strong>
                                 <span>
-                                    <p>Account ID: 1234567890</p>
+                                    <p>Account ID: {user._id}</p>
                                 </span>
                             </div>
-                            <div className={cx('profile-info')}>
-                                <span className={cx('web-name')}>
-                                    <img src={images.noImage2} alt="logo-web" />
-                                    <strong>Web ...</strong>
-                                </span>
-                                <strong className={cx('name')}>Truong Ng</strong>
-                                <div className={cx('label')}>
-                                    <p>Date</p>
-                                    <strong>13/12/2003</strong>
+                            {profileResult ? (
+                                <div className={cx('profile-info')}>
+                                    <span className={cx('web-name')}>
+                                        <img src={images.noImage2} alt="logo-web" />
+                                        <strong>Web ...</strong>
+                                    </span>
+                                    <strong className={cx('name')}>{profileResult.name || user.username}</strong>
+                                    <div className={cx('label')}>
+                                        <p>Date</p>
+                                        <strong>
+                                            {profileResult.date
+                                                ? profileResult.date.toString().substring(0, 10)
+                                                : '--/--/----'}
+                                        </strong>
+                                    </div>
+                                    <div className={cx('label')}>
+                                        <p>Gender</p>
+                                        <strong>{profileResult.gender || 'Other'}</strong>
+                                    </div>
+                                    <div className={cx('label')}>
+                                        <p>Email</p>
+                                        <strong>{user.username}</strong>
+                                    </div>
+                                    <div className={cx('label')}>
+                                        <p>Identity</p>
+                                        <strong>{user.identity}</strong>
+                                    </div>
+                                    <div className={cx('label')}>
+                                        <p>Phone</p>
+                                        <strong>{profileResult.phone || ''}</strong>
+                                    </div>
+                                    <div className={cx('label')}>
+                                        <p>Address</p>
+                                        <strong>{profileResult.address || ''}</strong>
+                                    </div>
                                 </div>
-                                <div className={cx('label')}>
-                                    <p>Gender</p>
-                                    <strong>Male</strong>
-                                </div>
-                                <div className={cx('label')}>
-                                    <p>Email</p>
-                                    <strong>test_1312@gmail.com</strong>
-                                </div>
-                                <div className={cx('label')}>
-                                    <p>Phone</p>
-                                    <strong>0123456789</strong>
-                                </div>
-                                <div className={cx('label')}>
-                                    <p>Address</p>
-                                    <strong>Ninh Giang, Hai Duong</strong>
-                                </div>
-                            </div>
+                            ) : (
+                                <></>
+                            )}
                             <div className={contact}>
                                 <strong>Contact</strong>
                                 <span>
                                     <p>Web...</p>
-                                    <p>test_1312@gmail.com</p>
+                                    <p>admin_1312@gmail.com</p>
                                 </span>
                                 <p>Copyright © 2024 - Version 1.0.0</p>
                             </div>

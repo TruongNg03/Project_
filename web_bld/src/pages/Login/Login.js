@@ -1,11 +1,13 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from './Input';
 // import { CloseIcon } from '~/components/Icons';
 import config from '~/config';
 import Button from '~/components/Button';
+import { AuthContext } from '~/context/AuthContext';
+import axios from 'axios';
 // import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
@@ -31,10 +33,25 @@ function Login() {
     const username = useRef();
     const password = useRef();
 
+    const [credentials, setCredentials] = useState({
+        username: undefined,
+        password: undefined,
+    });
+
+    const { loading, error, dispatch } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
     // check all input
     const handleInput = () => {
         const user = username.current.value;
         const pass = password.current.value;
+
+        // save username & pass
+        setCredentials({
+            username: user,
+            password: pass,
+        });
 
         if (validateEmail(user) && pass) {
             setDisabled(false);
@@ -83,19 +100,25 @@ function Login() {
     };
 
     // check condition username, password
-    // later
-    const checkLogin = (e) => {
-        const user = username.current.value;
-        const pass = password.current.value;
-
-        console.log(user + ' ' + pass);
+    const handleLogin = async (e) => {
         e.preventDefault();
+        dispatch({ type: 'LOGIN_START' });
+
+        try {
+            const res = await axios.post('http://localhost:8080/auth/login', credentials);
+            dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
+            localStorage.setItem('user', JSON.stringify(credentials));
+
+            navigate('/');
+        } catch (err) {
+            dispatch({ type: 'LOGIN_FAILURE', payload: err.response.data });
+        }
     };
 
     return (
         <div className={cx('login')}>
             <div className={cx('body')}>
-                <form className={cx('container')} onChange={handleInput} method="POST">
+                <div className={cx('container')} onChange={handleInput}>
                     {/* <img className={cx('logo')} src={images.download} alt='logo' /> */}
                     <h2 className={cx('title')}>Account Log In</h2>
                     {/* input */}
@@ -125,10 +148,11 @@ function Login() {
                         onBlur={checkPassword}
                     />
 
-                    <Button custom disabled={disabled} onClick={checkLogin} type="submit">
+                    <Button custom disabled={disabled} onClick={handleLogin} type="submit">
                         Log In
                     </Button>
-                </form>
+                    {error && <h3>{error.message}</h3>}
+                </div>
 
                 {/* <button className={cx('close')}><CloseIcon /></button> */}
                 <div className={cx('link')}>

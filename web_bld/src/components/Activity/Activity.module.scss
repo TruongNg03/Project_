@@ -1,57 +1,92 @@
 .activity {
     width: 100%;
     display: flex;
+    gap: 15px;
     padding: 12px 18px;
     border-radius: 15px;
     background-color: #f1f4f9;
 }
 
 .content {
-    width: 75%;
+    // width: 75%;
     display: flex;
+    flex: 1;
     flex-direction: column;
 
     strong {
-        font-size: 1.8rem;
-        margin-bottom: 8px;
+        font-size: 2rem;
+        margin-bottom: 6px;
     }
 
     ul {
         list-style: none;
-        font-size: 1.4rem;
-        color: rgba(0, 0, 0, 0.65);
+        font-size: 1.6rem;
 
         li {
+            display: flex;
+            flex-direction: row;
+            gap: 4px;
             margin-top: 3px;
+        }
+
+        .header-inner {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .content-inner {
+            flex: 1;
         }
     }
 }
 
 .user-register {
     display: flex;
-    flex: 1;
+    // flex: 1;
     flex-direction: column;
     justify-content: space-around;
-    margin-left: 5px;
 
-    button {
+    .btn {
         width: 100%;
+        max-width: 150px;
         height: 36px;
         border-radius: 18px;
         font-size: 16px;
         font-weight: bold;
         color: #fff;
-        background-color: #ff6666;
-        cursor: pointer;
-
-        &:hover {
-            background-color: #ff4d4d;
-        }
-
-        &:active {
-            background-color: #ff6666;
-        }
     }
+}
+
+// custom btn type
+.primary {
+    background-color: #5781d1;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #386fd6;
+    }
+
+    &:active {
+        background-color: #5781d1;
+    }
+}
+
+.alert {
+    background-color: #ff6666;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #ff4d4d;
+    }
+
+    &:active {
+        background-color: #ff6666;
+    }
+}
+
+.disable {
+    background-color: #386fd6;
+    opacity: 0.65;
+    cursor: default;
 }
 
 .wrapper-info {
@@ -65,7 +100,7 @@
 
     p {
         margin-left: 5px;
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -79,7 +114,7 @@
 
     p {
         margin-left: 5px;
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -90,6 +125,14 @@
 
     .content {
         width: 100%;
+
+        strong {
+            font-size: 1.8rem;
+        }
+
+        ul {
+            font-size: 1.5rem;
+        }
     }
 
     .user-register {
@@ -101,8 +144,25 @@
             width: 70%;
         }
 
-        button {
+        .title {
+            p {
+                font-size: 1.4rem;
+            }
+        }
+
+        .amount {
+            strong {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.4rem;
+            }
+        }
+
+        .btn {
             flex: 1;
+            font-size: 1.5rem;
         }
     }
 }

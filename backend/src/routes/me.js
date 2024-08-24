@@ -3,6 +3,7 @@ const router = express.Router();
 
 const meController = require('../app/controllers/MeController');
 
+router.get('/stored/hospitals', meController.storedHospitals);
 router.get('/stored/activities', meController.storedActivities);
 router.get('/trash/activities', meController.trashActivities);
 router.get('/stored/users-account', meController.storedUsers);

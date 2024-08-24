@@ -23,7 +23,6 @@ import Image from '~/components/Image';
 import Search from '../Search';
 import images from '~/assets/images';
 import { AuthContext } from '~/context/AuthContext';
-import routes from '~/';
 
 const cx = classNames.bind(styles);
 

@@ -36,7 +36,7 @@ function Profile() {
         }
 
         getActivities();
-    }, []);
+    }, [user._id]);
 
     const headerPage = cx({
         header_page: true,
@@ -151,7 +151,12 @@ function Profile() {
                                         />*/}
                                         {activityResult ? (
                                             activityResult.map((activity) => (
-                                                <Activity key={activity._id} activity={activity} button='Cancel'/>
+                                                <Activity
+                                                    key={activity._id}
+                                                    activity={activity}
+                                                    button="Cancel"
+                                                    alert
+                                                />
                                             ))
                                         ) : (
                                             <></>

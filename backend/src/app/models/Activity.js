@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 
 const Activity = new Schema(
   {
+    hospital: { type: String, require: true },
     title: { type: String, require: true },
     locate: { type: String, require: true },
     timeActive: { type: String },

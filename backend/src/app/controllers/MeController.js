@@ -3,6 +3,7 @@ const User = require('../models/User');
 const { mongooseToObject, multipleMongooseToObject } = require('../../util/mongoose');
 const Profile = require('../models/Profile');
 const Blood = require('../models/Blood');
+const Hospital = require('../models/Hospital');
 
 class MeController {
   // activity
@@ -19,7 +20,21 @@ class MeController {
 
     Promise.all([Activity.find({})])
       .then(([activities]) => {
-        res.status(200).json(activities);
+        const { hospital } = req.query;
+
+        if (hospital) {
+          if (hospital === 'Tất cả') {
+            res.status(200).json(activities);
+          }
+          
+          Activity.find({ hospital: req.query.hospital })
+            .then((activity) => {
+              res.status(200).json(activity);
+            })
+            .catch(next);
+        } else {
+          res.status(200).json(activities);
+        }
       })
       .catch(next);
   }
@@ -38,7 +53,7 @@ class MeController {
   storedUsers(req, res, next) {
     Promise.all([User.find({}).sortable(req)])
       .then(([users]) => {
-        const { id, sort } = req.query;
+        const { id } = req.query;
         const parseId = parseInt(id);
 
         if (!isNaN(parseId)) {
@@ -68,6 +83,15 @@ class MeController {
     Promise.all([Blood.find({})])
       .then(([bloods]) => {
         res.status(200).json(bloods);
+      })
+      .catch(next);
+  }
+
+  // [GET] /me/stored/hospitals
+  storedHospitals(req, res, next) {
+    Promise.all([Hospital.find({})])
+      .then(([hospital]) => {
+        res.status(200).json(hospital);
       })
       .catch(next);
   }

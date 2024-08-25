@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import images from '~/assets/images';
+import { format } from 'date-fns';
 import Item from '~/pages/Profile/Item';
 import Activity from '~/components/Activity';
 import { AuthContext } from '~/context/AuthContext';
@@ -185,7 +186,7 @@ function Profile() {
                                         <p>Date</p>
                                         <strong>
                                             {profileResult.date
-                                                ? profileResult.date.toString().substring(0, 10)
+                                                ? format(profileResult.date, 'dd-MM-yyyy')
                                                 : '--/--/----'}
                                         </strong>
                                     </div>

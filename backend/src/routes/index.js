@@ -5,6 +5,7 @@ const userRouter = require('./user');
 const bloodRouter = require('./blood');
 const hospitalRouter = require('./hospital');
 const meRouter = require('./me');
+const profileRouter = require('./profile');
 
 function route(app) {
   app.use('/', siteRouter);
@@ -14,6 +15,7 @@ function route(app) {
   //
   app.use('/auth', authRouter);
   app.use('/user', userRouter);
+  app.use('/profile', profileRouter);
   //
   app.use('/me', meRouter);
 }

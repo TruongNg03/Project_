@@ -12,7 +12,9 @@ function Activity({
     alert = false,
     disable = false,
     className,
+    id,
     onClick,
+    onChange,
     passProps,
 }) {
     const classes = cx('btn', {
@@ -24,6 +26,7 @@ function Activity({
 
     const props = {
         onClick,
+        onChange,
         ...passProps,
     };
 
@@ -36,7 +39,7 @@ function Activity({
     }
 
     return (
-        <div className={cx('activity')}>
+        <div className={cx('activity')} onChange={onChange}>
             <div className={cx('content')}>
                 <strong>{activity.title}</strong>
                 <ul>
@@ -67,7 +70,9 @@ function Activity({
                         <p>Người</p>
                     </span>
                 </div>
-                <button className={classes}>{button}</button>
+                <button className={classes} id={id} onClick={onClick}>
+                    {button}
+                </button>
             </div>
         </div>
     );
@@ -81,6 +86,7 @@ Activity.propTypes = {
     disable: PropTypes.bool,
     className: PropTypes.string,
     onClick: PropTypes.func,
+    onChange: PropTypes.func,
 };
 
 export default Activity;

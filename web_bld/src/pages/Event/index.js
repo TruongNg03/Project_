@@ -1,8 +1,15 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+import axios from 'axios';
 import classNames from 'classnames/bind';
 import styles from './Event.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { format } from 'date-fns';
+import addDays from 'date-fns/addDays';
+import { DateRange } from 'react-date-range';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+
 import Activity from '~/components/Activity';
 import useFetch from '~/hooks/useFetch';
 import { AuthContext } from '~/context/AuthContext';
@@ -12,14 +19,29 @@ const cx = classNames.bind(styles);
 
 function Event() {
     const [active, setActive] = useState(false);
-    const [numberActive, setNumberActive] = useState(false);
     const [hospital, setHospital] = useState(false);
     const [searchContent, setSearchContent] = useState('Tất cả');
+    const [activity, setActivity] = useState({
+        idActivity: null,
+    });
+
+    const [showDateRange, setShowDateRange] = useState(false);
+    const [stateDate, setStateDate] = useState([
+        {
+            startDate: new Date(),
+            endDate: addDays(new Date(), 0),
+            key: 'selection',
+        },
+    ]);
+
+    const hospitalRef = useRef(null);
 
     const { user } = useContext(AuthContext);
 
     // fetch api
-    const { data, loading, error } = useFetch(`http://localhost:8080/me/stored/activities?hospital=${searchContent}`);
+    const { data, loading, error } = useFetch(
+        `http://localhost:8080/me/stored/activities?hospital=${encodeURIComponent(searchContent)}`,
+    );
 
     useEffect(() => {
         async function getActivities() {
@@ -36,6 +58,15 @@ function Event() {
         getActivities();
     }, []);
 
+    // hide when click outside search
+    useEffect(() => {
+        window.onclick = (event) => {
+            if (event.target !== hospitalRef.current) {
+                setActive(false);
+            }
+        };
+    }, []);
+
     const handleListOption = () => {
         setActive(!active);
     };
@@ -45,27 +76,72 @@ function Event() {
         setActive(false);
     };
 
+    const handleShowDate = (e) => {
+        setShowDateRange(!showDateRange);
+    };
+
+    // not find by date
+    const handleSearchDate = () => {
+        setShowDateRange(!showDateRange);
+    };
+
+    const submitActivity = async (e) => {
+        setActivity({
+            idActivity: e.target.id,
+        });
+
+        console.log(e.target.id, activity.idActivity);
+
+        // send to server (trễ 1 click) => error
+        try {
+            await axios.put(`http://localhost:8080/profile/${user._id}/${activity.idActivity}`, activity);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div className={cx('event')}>
             <div className={cx('wrapper')}>
                 <div className={cx('search-activity')}>
                     <p className={cx('title-search')}>Bạn cần đặt lịch vào thời gian nào?</p>
-                    {/*  */}
+                    {/* search date */}
                     <div className={cx('search-date')}>
-                        <div className={cx('date')}>
-                            <input className={cx('input-date')} type="text" placeholder="Từ ngày - đến ngày" />
-                            <i className={cx('right-icon')}>
-                                <CalenderIcon />
-                            </i>
+                        <div className={cx('wrapper-date')}>
+                            <div className={cx('date')} onClick={handleShowDate}>
+                                <div className={cx('input-date')}>
+                                    <p className={cx('placeholder-date')}>
+                                        {format(stateDate[0].startDate, 'dd/MM/yyyy') +
+                                            ' - ' +
+                                            format(stateDate[0].endDate, 'dd/MM/yyyy')}
+                                    </p>
+                                </div>
+                                <i className={cx('right-icon')}>
+                                    <CalenderIcon />
+                                </i>
+                            </div>
+                            {showDateRange && (
+                                <DateRange
+                                    className={cx('date-range')}
+                                    onChange={(item) => setStateDate([item.selection])}
+                                    showSelectionPreview={true}
+                                    moveRangeOnFirstSelection={false}
+                                    months={2}
+                                    ranges={stateDate}
+                                    direction="horizontal"
+                                    preventSnapRefocus={true}
+                                    calendarFocus="backwards"
+                                />
+                            )}
                         </div>
-                        <button className={cx('search-btn')} disabled={false}>
+                        <button className={cx('search-btn')} onClick={handleSearchDate}>
                             Tìm kiếm
                         </button>
                     </div>
                     <div className={cx('search-organize')}>
                         <p>Đơn vị tổ chức:</p>
                         <div className={cx('select-menu')}>
-                            <div className={cx('select-btn')} onClick={handleListOption}>
+                            <div ref={hospitalRef} className={cx('select-btn')} onClick={handleListOption}>
                                 <span className={cx('search-text')}>{searchContent}</span>
                                 {!active ? (
                                     <FontAwesomeIcon className={cx('chevron-icon')} icon={faChevronDown} />
@@ -111,9 +187,20 @@ function Event() {
                             amount="40"
                             max="50"
                         /> */}
-                        {data.map((activity) => (
-                            <Activity key={activity._id} activity={activity} button="Đặt lịch" primary />
-                        ))}
+                        {data.map((activity) =>
+                            activity.amount < activity.max && user ? (
+                                <Activity
+                                    key={activity._id}
+                                    activity={activity}
+                                    button="Đặt lịch"
+                                    id={activity._id}
+                                    primary
+                                    onClick={submitActivity}
+                                />
+                            ) : (
+                                <Activity key={activity._id} activity={activity} button="Đặt lịch" disable />
+                            ),
+                        )}
                         {/* {data ? (
                             data.map((activity) => (
                                 <Activity key={activity._id} activity={activity} button="Đặt lịch" primary />

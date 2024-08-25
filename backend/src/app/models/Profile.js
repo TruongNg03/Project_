@@ -12,6 +12,7 @@ const Profile = new Schema(
     address: { type: String, default: null },
     title: { type: String, default: null },
     background: { type: String, default: 'backgroundProfile' },
+    idActivity: { type: String, default: null },
   },
   {
     timestamps: true,

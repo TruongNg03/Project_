@@ -11,8 +11,8 @@ const Activity = new Schema(
     locate: { type: String, require: true },
     timeActive: { type: String },
     timeStart: { type: String },
-    amount: { type: String, require: true },
-    max: { type: String, require: true },
+    amount: { type: Number, require: true },
+    max: { type: Number, require: true },
     slug: { type: String, slug: 'title', unique: true },
   },
   {

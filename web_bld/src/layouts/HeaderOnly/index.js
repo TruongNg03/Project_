@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './HeaderOnly.module.scss';
 import Header from '~/layouts/components/Header';
@@ -9,19 +9,21 @@ const cx = classNames.bind(styles);
 function HeaderOnly({ children }) {
     const [show, setShow] = useState(false);
 
-    const handleChange = () => {
-        if (window.scrollY > 500) {
-            setShow(true);
-        } else {
-            setShow(false);
-        }
-    };
-
     const handleClick = () => {
         window.scrollTo(0, 0);
     };
 
-    window.addEventListener('scroll', handleChange);
+    useEffect(() => {
+        const handleChange = () => {
+            if (window.scrollY > 500) {
+                setShow(true);
+            } else {
+                setShow(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleChange);
+    });
 
     return (
         <div className={cx('wrapper')}>

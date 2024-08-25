@@ -24,29 +24,45 @@
 
 .search-date {
     display: flex;
-    width: 80%;
+    width: 100%;
     max-width: 750px;
     padding-bottom: 15px;
     cursor: pointer;
 }
 
+.wrapper-date {
+    position: relative;
+    flex: 1;
+
+    // date range piker
+    .date-range {
+        position: absolute;
+        margin-top: 10px;
+        width: 100%;
+        z-index: 10;
+    }
+}
+
 .date {
+    width: 100%;
     min-height: var(--min-label-height);
     display: flex;
-    flex: 1;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 8px;
+    user-select: none;
 
     .input-date {
         width: 100%;
         padding: 16px;
-        border: 0px;
-        margin: 0px;
-        display: block;
+        display: flex;
+        align-items: center;
         background: none;
         box-sizing: border-box;
-        font-size: 1.8rem;
-        color: rgb(51, 51, 51);
+        font-size: 1.7rem;
+
+        .placeholder-date {
+            color: rgba(0, 0, 0, 0.4);
+        }
     }
 
     .right-icon {
@@ -92,7 +108,7 @@
 
 .select-menu {
     position: relative;
-    width: 400px;
+    width: 350px;
     margin-left: 15px;
 }
 
@@ -118,7 +134,9 @@
 .list-option {
     position: absolute;
     width: 100%;
+    max-height: calc(4 * var(--min-label-height));
     margin-top: 5px;
+    overflow-y: scroll;
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.3);
     background-color: #fff;

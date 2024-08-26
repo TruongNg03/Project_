@@ -1,0 +1,91 @@
+.alert {
+    width: 90%;
+    max-width: 500px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #dee2e6;
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .close-btn {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.body {
+    padding: 16px;
+    border-bottom: 1px solid #dee2e6;
+
+    p {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+}
+
+.footer {
+    padding: 12px;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        padding: 8px 12px;
+        margin: 4px;
+        font-size: 1.7rem;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .cancel-btn {
+        background-color: #6c757d;
+
+        &:hover {
+            background-color: #5c636a;
+        }
+
+        &:active {
+            background-color: #565e64;
+        }
+    }
+}
+
+.default-btn {
+    background-color: #386fd6;
+
+    &:hover {
+        background-color: #1e5ed4;
+    }
+
+    &:active {
+        background-color: #1351c3;
+    }
+}
+
+.danger {
+    background-color: #dc3545;
+
+    &:hover {
+        background-color: #bb2d3b;
+    }
+
+    &:active {
+        background-color: #b02a37;
+    }
+}

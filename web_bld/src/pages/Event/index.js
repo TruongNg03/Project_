@@ -11,6 +11,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 
 import Activity from '~/components/Activity';
+import Alert from '~/components/Alert';
 import useFetch from '~/hooks/useFetch';
 import { AuthContext } from '~/context/AuthContext';
 import { CalenderIcon } from '~/components/Icons';
@@ -24,6 +25,7 @@ function Event() {
     const [activity, setActivity] = useState({
         idActivity: null,
     });
+    const [showNotify, setShowNotify] = useState(false);
 
     const [showDateRange, setShowDateRange] = useState(false);
     const [stateDate, setStateDate] = useState([
@@ -90,15 +92,49 @@ function Event() {
             idActivity: e.target.id,
         });
 
-        console.log(e.target.id, activity.idActivity);
+        setShowNotify(true);
 
         // send to server (trễ 1 click) => error
+        // try {
+        //     await axios.put(`http://localhost:8080/profile/${user._id}/${activity.idActivity}`, activity);
+        // } catch (error) {
+        //     console.log(error);
+        // }
+    };
+
+    // onClick in alert comp
+    const onCloseBtn = () => {
+        setShowNotify(false);
+    };
+
+    const onCancelBtn = () => {
+        setShowNotify(false);
+    };
+
+    const onDefBtn = async () => {
+        // send to server (done)
         try {
             await axios.put(`http://localhost:8080/profile/${user._id}/${activity.idActivity}`, activity);
         } catch (error) {
             console.log(error);
         }
+
+        setShowNotify(false);
     };
+
+    // useEffect(() => {
+    //     async function addActivity() {
+    //         console.log(activity.idActivity);
+
+    //         try {
+    //             await axios.put(`http://localhost:8080/profile/${user._id}/${activity.idActivity}`, activity);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     }
+
+    //     addActivity();
+    // }, []);
 
     return (
         <div className={cx('event')}>
@@ -211,6 +247,19 @@ function Event() {
                     </div>
                 </div>
             </div>
+            {showNotify && (
+                <div className={cx('fixed-alert')} tabIndex="-1">
+                    <Alert
+                        header="Xóa khóa học?"
+                        content="Bạn chắc chắn muốn xóa khóa học này?"
+                        contentBtn="Đặt lịch"
+                        danger
+                        onCloseBtn={onCloseBtn}
+                        onCancelBtn={onCancelBtn}
+                        onDefBtn={onDefBtn}
+                    />
+                </div>
+            )}
         </div>
     );
 }

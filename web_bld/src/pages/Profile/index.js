@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
+import { Link } from 'react-router-dom';
 import images from '~/assets/images';
 import { format } from 'date-fns';
 import Item from '~/pages/Profile/Item';
 import Activity from '~/components/Activity';
 import { AuthContext } from '~/context/AuthContext';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +16,7 @@ function Profile() {
     const [fixedContact, setFixedContact] = useState(false);
     const [activityResult, setActivityResult] = useState(null);
     const [profileResult, setProfileResult] = useState(null);
+    // const [changeProfile, setChangeProfile] = useState(null);
 
     const { user } = useContext(AuthContext);
 
@@ -24,7 +27,7 @@ function Profile() {
             const activityData = await activity.json();
 
             // get profile
-            const profile = await fetch(`http://localhost:8080/me/stored/users-account?id=${user._id}`);
+            const profile = await fetch(`http://localhost:8080/profile/${user._id}`);
             const profileData = await profile.json();
 
             if (activityData.length === 0) {
@@ -107,9 +110,9 @@ function Profile() {
                                 <p>{user.title || 'Default signature given to everyone~'}</p>
                             </div>
                         </div>
-                        <div className={edit}>
+                        <Link className={edit} to={config.routes.editProfile}>
                             <button className={cx('edit-btn')}>Edit</button>
-                        </div>
+                        </Link>
                     </div>
                 </div>
 
@@ -192,7 +195,7 @@ function Profile() {
                                     </div>
                                     <div className={cx('label')}>
                                         <p>Gender</p>
-                                        <strong>{profileResult.gender || 'Other'}</strong>
+                                        <strong>{profileResult.gender || 'Prefer not to say'}</strong>
                                     </div>
                                     <div className={cx('label')}>
                                         <p>Email</p>

@@ -1,0 +1,167 @@
+.edit-profile {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #f5f6fb;
+}
+
+.wrapper {
+    width: 90%;
+    max-width: 850px;
+    margin-top: 16px;
+    padding-bottom: 40px;
+    border-radius: 16px;
+    background-color: #fff;
+}
+
+.header {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    border-bottom: 1px solid #f5f6fb;
+
+    .text {
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+}
+
+.user-info {
+    padding: 16px 16px 40px;
+
+    .title {
+        font-size: 1.4rem;
+        color: rgba(0, 0, 0, 0.65);
+    }
+}
+
+.username {
+    margin-top: 24px;
+
+    input {
+        width: 100%;
+        border: 1px solid #f1f4f9;
+        border-radius: 8px;
+        margin-top: 8px;
+        padding: 10px;
+        font-size: 1.513rem;
+        color: rgba(0, 0, 0, 0.85);
+
+        &:focus {
+            border: 1px solid #6680ff;
+        }
+    }
+}
+
+.signature {
+    margin-top: 24px;
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 8px;
+        color: rgba(0, 0, 0, 0.85);
+        font-size: 1.513rem;
+        border-radius: 8px;
+        border: 1px solid #f1f4f9;
+
+        &:focus {
+            border: 1px solid #6680ff;
+        }
+    }
+}
+
+.gender {
+    position: relative;
+    margin-top: 24px;
+}
+
+.gender-label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #f1f4f9;
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 10px;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+
+    .gender-text {
+        font-size: 1.513rem;
+    }
+
+    .chevron-icon {
+        font-size: 1.2rem;
+        color: #b2bdce;
+    }
+
+    &:hover {
+        border: 1px solid #6680ff;
+
+        .chevron-icon {
+            color: #6680ff;
+        }
+    }
+}
+
+.list-options {
+    width: 100%;
+    position: absolute;
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    color: rgba(0, 0, 0, 0.85);
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 12px 24px rgba(47, 63, 86, 0.2);
+    z-index: 1;
+
+    .option {
+        margin: 4px;
+        padding: 10px 12px;
+        font-size: 1.4rem;
+        border-radius: 8px;
+        cursor: pointer;
+
+        &:hover {
+            color: #6680ff;
+            background-color: #eff2ff;
+        }
+    }
+}
+
+.save {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.save-btn {
+    width: 90%;
+    max-width: 280px;
+    min-width: 80px;
+    height: 44px;
+    margin-top: 8px;
+    padding: 0 24px;
+    line-height: 44px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 22px;
+    color: #6680ff;
+    background-color: #e5eaff;
+    cursor: pointer;
+
+    &:hover {
+        color: #fff;
+        background-color: #6680ff;
+    }
+
+    &:active {
+        color: #fff;
+        background-color: #3d55cc;
+    }
+}

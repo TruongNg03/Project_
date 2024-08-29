@@ -8,6 +8,14 @@ class ProfileController {
       .catch(next);
   }
 
+  // [PUT] /profile/:id/edit
+  changeProfile(req, res, next) {
+    Profile.updateOne({ userId: req.params.id }, req.body)
+      .lean()
+      .then(() => res.status(200).json())
+      .catch();
+  }
+
   // [PUT] /profile/:id/:activityId
   addOneActivity(req, res, next) {
     Profile.updateOne({ userId: req.params.id }, req.body)

@@ -7,10 +7,11 @@ const Profile = new Schema(
   {
     userId: { type: String, require: true, unique: true },
     name: { type: String, default: null },
+    signature: { type: String, default: null },
+    gender: { type: String, default: 'Prefer not to say' },
     phone: { type: Number, default: null },
     date: { type: Date, default: null },
     address: { type: String, default: null },
-    title: { type: String, default: null },
     background: { type: String, default: 'backgroundProfile' },
     idActivity: { type: String, default: null },
   },

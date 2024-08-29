@@ -8,6 +8,7 @@ const routes = {
     event: '/event',
     news: '/news',
     profile: `/profile/user_id_${getUserId()}`,
+    editProfile: `/profile/user_id_${getUserId()}/edit`,
     login: '/login',
     register: '/register',
 };

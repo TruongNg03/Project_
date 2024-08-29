@@ -11,6 +11,7 @@ import Event from '~/pages/Event';
 import Profile from '~/pages/Profile';
 import Login from '~/pages/Login';
 import Register from '~/pages/Register';
+import EditProfile from '~/pages/EditProfile';
 
 // public routes
 const publicRoutes = [
@@ -22,6 +23,9 @@ const publicRoutes = [
     { path: config.routes.register, component: Register, layout: HeaderOnly },
 ];
 
-const privateRoutes = [{ path: config.routes.profile, component: Profile, layout: HeaderOnly }];
+const privateRoutes = [
+    { path: config.routes.profile, component: Profile, layout: HeaderOnly },
+    { path: config.routes.editProfile, component: EditProfile, layout: HeaderOnly },
+];
 
 export { publicRoutes, privateRoutes };

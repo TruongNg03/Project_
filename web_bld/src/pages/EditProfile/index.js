@@ -6,6 +6,9 @@ import styles from './EditProfile.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { format } from 'date-fns';
+import { CloseIcon } from '~/components/Icons';
+import images from '~/assets/images';
+import BackgroundItem from './BackgroundItem';
 import { AuthContext } from '~/context/AuthContext';
 
 const cx = classNames.bind(styles);
@@ -15,6 +18,11 @@ function EditProfile() {
     const navigate = useNavigate();
 
     const [active, setActive] = useState(false);
+    const [background, setBackground] = useState(null);
+    // const [currentBackground, setCurrentBackground] = useState(null);
+    const [listBackground, setListBackground] = useState(null);
+    const [showChangeBackground, setShowChangeBackground] = useState(false);
+    const [showChangeButton, setShowChangeButton] = useState(false);
 
     const [userInfo, setUserInfo] = useState({
         name: null,
@@ -32,6 +40,19 @@ function EditProfile() {
             const profile = await fetch(`http://localhost:8080/profile/${user._id}`);
             const profileData = await profile.json();
 
+            // list background
+            const fetchListBackground = await fetch('http://localhost:8080/backgrounds');
+            const allBackgroundData = await fetchListBackground.json();
+
+            if (profileData.background) {
+                const userBackground = await fetch(`http://localhost:8080/backgrounds?id=${profileData.background}`);
+                const userBackgroundData = await userBackground.json();
+
+                setBackground(userBackgroundData);
+                // setCurrentBackground(userBackgroundData.imageUrl);
+            }
+
+            setListBackground(allBackgroundData);
             setUserInfo(profileData);
         }
 
@@ -96,6 +117,33 @@ function EditProfile() {
         navigate(`/profile/user_id_${user._id}`);
     };
 
+    // show change background
+    const handleShowChangeBg = () => {
+        setShowChangeBackground(!showChangeBackground);
+    };
+
+    // select background
+    const handleSelectBg = async (e) => {
+        setBackground({
+            _id: e.target.id,
+            imageUrl: e.target.currentSrc,
+        });
+
+        setUserInfo({
+            ...userInfo,
+            background: e.target.id,
+        });
+    };
+
+    const handleSubmitBtn = async () => {
+        // send to server
+        try {
+            await axios.put(`http://localhost:8080/profile/${user._id}/${userInfo.background}`, userInfo);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div className={cx('edit-profile')}>
             <div className={cx('wrapper')}>
@@ -103,7 +151,9 @@ function EditProfile() {
                     <p className={cx('text')}>Complete personal information</p>
                 </div>
                 <div className={cx('content')}>
-                    {/* <div className={cx('user-avatar')}></div> */}
+                    <div className={cx('user-background')}>
+                        <button onClick={handleShowChangeBg}>Change Background</button>
+                    </div>
                     <div className={cx('user-info')}>
                         <div className={cx('username')}>
                             <p className={cx('title')}>Name</p>
@@ -153,12 +203,12 @@ function EditProfile() {
                                 </ul>
                             )}
                         </div>
+                        {/* date of birth */}
                         <div className={cx('username')}>
                             <p className={cx('title')}>Date</p>
                             <input
                                 type="date"
-                                // not format date: yyyy-MM-dd or ...
-                                value={userInfo.date ? format(userInfo.date, 'MM-dd-yyyy') : ''}
+                                value={userInfo.date ? format(userInfo.date, 'yyyy-MM-dd') : ''}
                                 onChange={handleChangeDate}
                             />
                         </div>
@@ -188,6 +238,45 @@ function EditProfile() {
                     </div>
                 </div>
             </div>
+
+            {/* change background */}
+            {showChangeBackground && (
+                <div className={cx('change-background')}>
+                    <div className={cx('background-wrapper')}>
+                        <div className={cx('bg-header')} style={{ backgroundImage: `url(${background.imageUrl})` }}>
+                            <div className={cx('float-header')}>
+                                <p>Modify background image</p>
+                                <button onClick={handleShowChangeBg}>
+                                    <CloseIcon />
+                                </button>
+                            </div>
+                            <div className={cx('float-user')}>
+                                <div className={cx('avatar')}>
+                                    <img src={images.noImage2} alt="avatar" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className={cx('content-bg')}>
+                            {listBackground &&
+                                listBackground.map((background, index) => (
+                                    <BackgroundItem
+                                        key={background._id}
+                                        id={background._id}
+                                        src={background.imageUrl}
+                                        alt={'background-' + (index + 1)}
+                                        usedBg={userInfo.background === background._id}
+                                        clickBg={handleSelectBg}
+                                    />
+                                ))}
+                        </div>
+                        <div className={cx('edit-bottom')}>
+                            <button className={cx('edit-btn')} onClick={handleSubmitBtn}>
+                                Use
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

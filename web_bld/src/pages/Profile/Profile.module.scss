@@ -396,6 +396,19 @@
     }
 }
 
+// alert
+.fixed-alert {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
 @media (width <= 700px) {
     .wrapper-content {
         flex-direction: column-reverse;

@@ -46,18 +46,14 @@ function Event() {
     );
 
     useEffect(() => {
-        async function getActivities() {
+        async function getHospitals() {
             const hos = await fetch('http://localhost:8080/me/stored/hospitals');
             const hosData = await hos.json();
 
-            if (hosData.length === 0) {
-                setHospital(null);
-            } else {
-                setHospital(hosData);
-            }
+            setHospital(hosData);
         }
 
-        getActivities();
+        getHospitals();
     }, []);
 
     // hide when click outside search
@@ -250,10 +246,9 @@ function Event() {
             {showNotify && (
                 <div className={cx('fixed-alert')} tabIndex="-1">
                     <Alert
-                        header="Xóa khóa học?"
-                        content="Bạn chắc chắn muốn xóa khóa học này?"
+                        header="Đăng ký hoạt động?"
+                        content="Bạn chắc chắn muốn đăng ký hoạt động này?"
                         contentBtn="Đặt lịch"
-                        danger
                         onCloseBtn={onCloseBtn}
                         onCancelBtn={onCancelBtn}
                         onDefBtn={onDefBtn}

@@ -6,6 +6,7 @@ const bloodRouter = require('./blood');
 const hospitalRouter = require('./hospital');
 const meRouter = require('./me');
 const profileRouter = require('./profile');
+const backgroundRouter = require('./background');
 
 function route(app) {
   app.use('/', siteRouter);
@@ -16,6 +17,7 @@ function route(app) {
   app.use('/auth', authRouter);
   app.use('/user', userRouter);
   app.use('/profile', profileRouter);
+  app.use('/backgrounds', backgroundRouter);
   //
   app.use('/me', meRouter);
 }

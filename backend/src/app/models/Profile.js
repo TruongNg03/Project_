@@ -12,7 +12,7 @@ const Profile = new Schema(
     phone: { type: Number, default: null },
     date: { type: Date, default: null },
     address: { type: String, default: null },
-    background: { type: String, default: 'backgroundProfile' },
+    background: { type: String, default: null },
     idActivity: { type: String, default: null },
   },
   {

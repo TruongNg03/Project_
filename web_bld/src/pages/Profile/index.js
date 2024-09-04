@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import { Link } from 'react-router-dom';
@@ -6,6 +7,7 @@ import images from '~/assets/images';
 import { format } from 'date-fns';
 import Item from '~/pages/Profile/Item';
 import Activity from '~/components/Activity';
+import Alert from '~/components/Alert';
 import { AuthContext } from '~/context/AuthContext';
 import config from '~/config';
 
@@ -16,24 +18,30 @@ function Profile() {
     const [fixedContact, setFixedContact] = useState(false);
     const [activityResult, setActivityResult] = useState(null);
     const [profileResult, setProfileResult] = useState(null);
-    // const [changeProfile, setChangeProfile] = useState(null);
+    const [background, setBackground] = useState(null);
+    const [showNotify, setShowNotify] = useState(false);
 
     const { user } = useContext(AuthContext);
 
     // fetch api
     useEffect(() => {
         async function getActivities() {
-            const activity = await fetch('http://localhost:8080/me/stored/activities');
-            const activityData = await activity.json();
-
             // get profile
             const profile = await fetch(`http://localhost:8080/profile/${user._id}`);
             const profileData = await profile.json();
 
-            if (activityData.length === 0) {
-                setActivityResult(null);
-            } else {
+            if (profileData.idActivity) {
+                const activity = await fetch(`http://localhost:8080/me/stored/activities?id=${profileData.idActivity}`);
+                const activityData = await activity.json();
+
                 setActivityResult(activityData);
+            }
+
+            if (profileData.background) {
+                const userBackground = await fetch(`http://localhost:8080/backgrounds?id=${profileData.background}`);
+                const userBackgroundData = await userBackground.json();
+
+                setBackground(userBackgroundData.imageUrl);
             }
 
             setProfileResult(profileData);
@@ -81,6 +89,33 @@ function Profile() {
         }
     };
 
+    const handleCancelActivity = () => {
+        setShowNotify(true);
+    };
+
+    // onClick in alert comp
+    const onCloseBtn = () => {
+        setShowNotify(false);
+    };
+
+    const onCancelBtn = () => {
+        setShowNotify(false);
+    };
+
+    const onDefBtn = async () => {
+        // send to server
+        try {
+            await axios.put(`http://localhost:8080/profile/${user._id}/${profileResult.idActivity}`, {
+                idActivity: null,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+        setShowNotify(false);
+        window.location.reload(false);
+    };
+
     window.addEventListener('scroll', handleChange);
 
     return (
@@ -88,7 +123,7 @@ function Profile() {
             {/* background pf page */}
             <div className={cx('background')}>
                 <div className={cx('background-wrapper')}>
-                    <img src={images.backgroundProfile} alt="background" />
+                    <img src={background ? background : images.backgroundProfile} alt="background" />
                     <div className={cx('mask')}></div>
                 </div>
             </div>
@@ -154,14 +189,13 @@ function Profile() {
                                             max="50"
                                         />*/}
                                         {activityResult ? (
-                                            activityResult.map((activity) => (
-                                                <Activity
-                                                    key={activity._id}
-                                                    activity={activity}
-                                                    button="Cancel"
-                                                    alert
-                                                />
-                                            ))
+                                            <Activity
+                                                key={activityResult._id}
+                                                activity={activityResult}
+                                                button="Cancel"
+                                                alert
+                                                onClick={handleCancelActivity}
+                                            />
                                         ) : (
                                             <></>
                                         )}
@@ -229,6 +263,19 @@ function Profile() {
                     </div>
                 </div>
             </div>
+            {showNotify && (
+                <div className={cx('fixed-alert')} tabIndex="-1">
+                    <Alert
+                        header="Xóa hoạt động?"
+                        content="Bạn chắc chắn muốn xóa hoạt động này?"
+                        contentBtn="Xóa"
+                        danger
+                        onCloseBtn={onCloseBtn}
+                        onCancelBtn={onCancelBtn}
+                        onDefBtn={onDefBtn}
+                    />
+                </div>
+            )}
         </div>
     );
 }

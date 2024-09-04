@@ -20,14 +20,20 @@ class MeController {
 
     Promise.all([Activity.find({})])
       .then(([activities]) => {
-        const { hospital } = req.query;
+        const { hospital, id } = req.query;
 
         if (hospital) {
           if (hospital === 'Tất cả') {
             res.status(200).json(activities);
           }
-          
+
           Activity.find({ hospital: req.query.hospital })
+            .then((activity) => {
+              res.status(200).json(activity);
+            })
+            .catch(next);
+        } else if (id) {
+          Activity.findById({ _id: req.query.id })
             .then((activity) => {
               res.status(200).json(activity);
             })

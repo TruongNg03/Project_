@@ -23,6 +23,14 @@ class ProfileController {
       .then(() => res.status(200).json())
       .catch();
   }
+
+  // [PUT] /profile/:id/:background
+  changeBackground(req, res, next) {
+    Profile.updateOne({ background: req.params.background }, req.body)
+      .lean()
+      .then(() => res.status(200).json())
+      .catch();
+  }
 }
 
 module.exports = new ProfileController();

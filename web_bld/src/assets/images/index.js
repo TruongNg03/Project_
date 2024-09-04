@@ -13,6 +13,7 @@ const images = {
     backgroundItem: require('~/assets/images/background-item.png'),
     iconNote: require('~/assets/images/icon-note.png'),
     noActivity: require('~/assets/images/no-activity.png'),
+    checked: require('~/assets/images/checked.png'),
 };
 
 export default images;

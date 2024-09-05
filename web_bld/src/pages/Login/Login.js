@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef, useContext, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,6 +19,7 @@ function validateEmail(email) {
 
 function Login() {
     const [disabled, setDisabled] = useState(true);
+    const [showError, setShowError] = useState(false);
     //
     const [userNormalStyle, setUserNormalStyle] = useState(false);
     const [userAlertStyle, setUserAlertStyle] = useState(false);
@@ -100,8 +101,7 @@ function Login() {
     };
 
     // check condition username, password
-    const handleLogin = async (e) => {
-        e.preventDefault();
+    const handleLogin = async () => {
         dispatch({ type: 'LOGIN_START' });
 
         try {
@@ -112,8 +112,22 @@ function Login() {
             navigate('/');
         } catch (err) {
             dispatch({ type: 'LOGIN_FAILURE', payload: err.response.data });
+            setShowError(true);
         }
     };
+
+    // show error in 2s
+    useEffect(() => {
+        if (showError) {
+            const timer = setTimeout(() => {
+                setShowError(false);
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        } else {
+            setShowError(false);
+        }
+    }, [showError]);
 
     return (
         <div className={cx('login')}>
@@ -151,7 +165,6 @@ function Login() {
                     <Button custom disabled={disabled} onClick={handleLogin} type="submit">
                         Log In
                     </Button>
-                    {error && <h3>{error.message}</h3>}
                 </div>
 
                 {/* <button className={cx('close')}><CloseIcon /></button> */}
@@ -162,6 +175,11 @@ function Login() {
                     </Link>
                 </div>
             </div>
+            {error && showError && (
+                <div className={cx('error-message')}>
+                    <p>{error.message}</p>
+                </div>
+            )}
         </div>
     );
 }

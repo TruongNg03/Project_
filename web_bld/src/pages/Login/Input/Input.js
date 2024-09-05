@@ -12,6 +12,7 @@ const Input = forwardRef(function Input(
         className,
         styleNormal = false,
         styleAlert = false,
+        type,
         contentHolder,
         minLength,
         maxLength,
@@ -68,7 +69,7 @@ const Input = forwardRef(function Input(
         <div className={cx('wrapper')}>
             <div className={classes}>
                 <input
-                    type={isShown ? 'text' : 'password'}
+                    type={type ? type : isShown ? 'text' : 'password'}
                     ref={inputRef}
                     value={inputValue}
                     minLength={minLength}
@@ -115,6 +116,7 @@ Input.propTypes = {
     className: PropTypes.string,
     styleNormal: PropTypes.bool,
     styleAlert: PropTypes.bool,
+    type: PropTypes.string,
     contentHolder: PropTypes.string,
     minLength: PropTypes.string,
     maxLength: PropTypes.string,

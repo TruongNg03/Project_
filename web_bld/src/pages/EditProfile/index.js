@@ -19,10 +19,9 @@ function EditProfile() {
 
     const [active, setActive] = useState(false);
     const [background, setBackground] = useState(null);
-    // const [currentBackground, setCurrentBackground] = useState(null);
+    const [currentBackground, setCurrentBackground] = useState(null);
     const [listBackground, setListBackground] = useState(null);
     const [showChangeBackground, setShowChangeBackground] = useState(false);
-    const [showChangeButton, setShowChangeButton] = useState(false);
 
     const [userInfo, setUserInfo] = useState({
         name: null,
@@ -49,7 +48,7 @@ function EditProfile() {
                 const userBackgroundData = await userBackground.json();
 
                 setBackground(userBackgroundData);
-                // setCurrentBackground(userBackgroundData.imageUrl);
+                setCurrentBackground(userBackgroundData);
             }
 
             setListBackground(allBackgroundData);
@@ -129,16 +128,22 @@ function EditProfile() {
             imageUrl: e.target.currentSrc,
         });
 
-        setUserInfo({
-            ...userInfo,
-            background: e.target.id,
-        });
+        // setUserInfo({
+        //     ...userInfo,
+        //     background: e.target.id,
+        // });
     };
 
     const handleSubmitBtn = async () => {
+        setCurrentBackground({
+            _id: background._id,
+            imageUrl: background.imageUrl,
+        });
         // send to server
         try {
-            await axios.put(`http://localhost:8080/profile/${user._id}/${userInfo.background}`, userInfo);
+            await axios.put(`http://localhost:8080/profile/${user._id}/${userInfo.background}`, {
+                background: background._id,
+            });
         } catch (error) {
             console.log(error);
         }
@@ -243,7 +248,14 @@ function EditProfile() {
             {showChangeBackground && (
                 <div className={cx('change-background')}>
                     <div className={cx('background-wrapper')}>
-                        <div className={cx('bg-header')} style={{ backgroundImage: `url(${background.imageUrl})` }}>
+                        <div
+                            className={cx('bg-header')}
+                            style={{
+                                backgroundImage: `url(${
+                                    background ? background.imageUrl : 'http://localhost:8080/img/background-1.jpg'
+                                })`,
+                            }}
+                        >
                             <div className={cx('float-header')}>
                                 <p>Modify background image</p>
                                 <button onClick={handleShowChangeBg}>
@@ -264,15 +276,22 @@ function EditProfile() {
                                         id={background._id}
                                         src={background.imageUrl}
                                         alt={'background-' + (index + 1)}
-                                        usedBg={userInfo.background === background._id}
+                                        usedBg={currentBackground._id === background._id}
                                         clickBg={handleSelectBg}
                                     />
                                 ))}
                         </div>
                         <div className={cx('edit-bottom')}>
-                            <button className={cx('edit-btn')} onClick={handleSubmitBtn}>
-                                Use
-                            </button>
+                            {/* error _id=null */}
+                            {currentBackground._id === background._id ? (
+                                <button className={cx('edit-btn-disabled')} onClick={handleSubmitBtn} disabled>
+                                    Already Used
+                                </button>
+                            ) : (
+                                <button className={cx('edit-btn')} onClick={handleSubmitBtn}>
+                                    Use
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

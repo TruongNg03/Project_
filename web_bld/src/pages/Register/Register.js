@@ -1,12 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+import axios from 'axios';
 import classNames from 'classnames/bind';
 import styles from './Register.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '~/pages/Login/Input';
 // import { CloseIcon } from '~/components/Icons';
 import config from '~/config';
 import Button from '~/components/Button';
 // import images from '~/assets/images';
+import { AuthContext } from '~/context/AuthContext';
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +19,7 @@ function validateEmail(email) {
 
 function Register() {
     const [disabled, setDisabled] = useState(true);
+    const [showError, setShowError] = useState(false);
     //
     const [userNormalStyle, setUserNormalStyle] = useState(false);
     const [userAlertStyle, setUserAlertStyle] = useState(false);
@@ -33,31 +36,36 @@ function Register() {
     const [passAgainAlert, setPassAgainAlert] = useState('Password confirmation cannot be empty');
     const [hidePassAgainAlert, setHidePassAgainAlert] = useState(true);
 
+    const { loading, error, dispatch } = useContext(AuthContext);
+
     const [formData, setFormData] = useState({
         username: '',
         password: '',
-        passwordAgain: '',
+        identity: '',
     });
 
     const username = useRef();
-    const verifyCode = useRef();
+    const identityCode = useRef();
     const password = useRef();
     const passwordAgain = useRef();
 
+    const navigate = useNavigate();
+
     const changeDataForm = () => {
         const user = username.current.value;
-        const verify = verifyCode.current.value;
+        const identity = identityCode.current.value;
         const pass = password.current.value;
         const passAgain = passwordAgain.current.value;
 
+        // user info
         setFormData({
             username: user,
             password: pass,
-            passwordAgain: passAgain,
+            identity: identity,
         });
 
         // check disabled btn
-        if (user && pass && verify.length === 6 && passAgain && pass === passAgain) {
+        if (user && pass && identity.length >= 6 && passAgain && pass === passAgain) {
             setDisabled(false);
         } else {
             setDisabled(true);
@@ -85,10 +93,10 @@ function Register() {
     };
 
     const checkVerify = () => {
-        const verify = verifyCode.current.value;
+        const identity = identityCode.current.value;
 
         setDisabled(true);
-        if (verify.length === 6) {
+        if (identity.length >= 6) {
             setDisabled(false);
         } else {
             setDisabled(true);
@@ -134,12 +142,37 @@ function Register() {
         }
     };
 
-    // submit
-    const submitRegister = (e) => {
+    // submit (not done)
+    const submitRegister = async (e) => {
         e.preventDefault();
+
+        dispatch({ type: 'REGISTER_START' });
+
+        // send to server
+        try {
+            const res = await axios.post('http://localhost:8080/auth/register', formData);
+            dispatch({ type: 'REGISTER_SUCCESS', payload: res.data });
+            navigate('/login');
+        } catch (err) {
+            dispatch({ type: 'REGISTER_FAILURE', payload: err.response.data });
+            setShowError(true);
+        }
 
         console.log(formData);
     };
+
+    // show error in 2s
+    useEffect(() => {
+        if (showError) {
+            const timer = setTimeout(() => {
+                setShowError(false);
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        } else {
+            setShowError(false);
+        }
+    }, [showError]);
 
     return (
         <div className={cx('register')}>
@@ -150,6 +183,7 @@ function Register() {
                     {/* input */}
                     <Input
                         ref={username}
+                        type="text"
                         styleAlert={userAlertStyle}
                         styleNormal={userNormalStyle}
                         maxLength="40"
@@ -162,10 +196,11 @@ function Register() {
                         onBlur={checkUser}
                     />
                     <Input
-                        ref={verifyCode}
-                        contentHolder="Verification Code"
+                        ref={identityCode}
+                        type="number"
+                        contentHolder="Identity"
                         hidePassIcon={true}
-                        hideSend={false}
+                        // hideSend={false}
                         onBlur={checkVerify}
                     />
                     <Input
@@ -206,6 +241,11 @@ function Register() {
                     </Link>
                 </div>
             </div>
+            {error && showError && (
+                <div className={cx('error-message')}>
+                    <p>{error.message}</p>
+                </div>
+            )}
         </div>
     );
 }

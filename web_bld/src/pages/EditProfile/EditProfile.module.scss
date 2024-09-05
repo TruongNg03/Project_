@@ -184,6 +184,19 @@
     }
 }
 
+.edit-btn-disabled {
+    min-width: 64px;
+    height: 36px;
+    padding: 0 20px;
+    line-height: 36px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 18px;
+    color: rgba(0, 0, 0, 0.25);
+    background: #dde2ec;
+    cursor: not-allowed;
+}
+
 // profile info
 .user-info {
     padding: 16px 16px 40px;

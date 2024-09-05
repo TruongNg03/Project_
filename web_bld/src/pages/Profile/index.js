@@ -142,7 +142,11 @@ function Profile() {
                                 ) : (
                                     <span className={cx('name')}>{user.username}</span>
                                 )}
-                                <p>{user.title || 'Default signature given to everyone~'}</p>
+                                {profileResult ? (
+                                    <p>{profileResult.signature || 'Default signature given to everyone~'}</p>
+                                ) : (
+                                    <p>Default signature given to everyone~</p>
+                                )}
                             </div>
                         </div>
                         <Link className={edit} to={config.routes.editProfile}>

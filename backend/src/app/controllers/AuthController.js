@@ -13,24 +13,42 @@ class AuthController {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
-    const user = new User({
+    const newUser = new User({
       ...req.body,
       password: hash,
     });
 
-    user
-      .save()
-      .then((user) => {
-        // create default user info
-        const profile = new Profile({
-          ...req.body,
-          userId: user._id,
-        });
+    User.findOne({ username: req.body.username })
+      .then((findUsername) => {
+        // check username
+        if (findUsername) {
+          return res.status(400).json({ message: 'Username is validated!' });
+        } else {
+          User.findOne({ identity: req.body.identity })
+            .then((findIdentity) => {
+              // check identity
+              if (findIdentity) {
+                return res.status(400).json({ message: 'Identity is validated!' });
+              } else {
+                newUser
+                  .save()
+                  .then((user) => {
+                    // create default user info
+                    const profile = new Profile({
+                      ...req.body,
+                      userId: user._id,
+                    });
 
-        profile
-          .save()
-          .then(() => res.status(200).send('User has been created.'))
-          .catch(next);
+                    profile
+                      .save()
+                      .then(() => res.status(200).json('User has been created!'))
+                      .catch(next);
+                  })
+                  .catch(next);
+              }
+            })
+            .catch(next);
+        }
       })
       .catch(next);
   }

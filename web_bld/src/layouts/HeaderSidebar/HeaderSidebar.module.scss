@@ -1,0 +1,16 @@
+* {
+    scroll-behavior: smooth;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+.container {
+    height: calc(100vh - var(--default-layout-header-height));
+    margin-top: var(--default-layout-header-height);
+    margin-left: 250px;
+    padding: 10px;
+    background: #fff;
+    overflow-y: scroll;
+}

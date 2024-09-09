@@ -8,11 +8,12 @@ import {
     faSignOut,
     // faEllipsisVertical,
     faGear,
+    faBriefcase,
 } from '@fortawesome/free-solid-svg-icons';
 // import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import config from '~/config';
 // import Button from '~/components/Button';
@@ -74,14 +75,27 @@ const userMenu = [
     {
         icon: <FontAwesomeIcon icon={faSignOut} />,
         title: 'Log out',
-        to: '/blank-page',
+        separate: true,
+    },
+];
+
+const adminMenu = [
+    ...userMenu.slice(0, 3),
+    {
+        icon: <FontAwesomeIcon icon={faBriefcase} />,
+        title: 'Manage',
+        to: config.routes.activities,
+        separate: true,
+    },
+    {
+        icon: <FontAwesomeIcon icon={faSignOut} />,
+        title: 'Log out',
         separate: true,
     },
 ];
 
 function Header() {
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate();
 
     //
     const handleMenuChange = (menuItem) => {
@@ -98,8 +112,7 @@ function Header() {
             case 'Log out':
                 // localStorage.clear();
                 localStorage.removeItem('user');
-                navigate('/');
-                window.location.reload(false);
+                window.location.replace('http://localhost:3001');
                 break;
             default:
         }
@@ -116,8 +129,15 @@ function Header() {
                 <Search />
 
                 {/* action - login account */}
-                <div className={cx('action')}>
-                    {user ? (
+                {user ? (
+                    user.admin ? (
+                        <div className={cx('action')}>
+                            <p style={{ fontSize: '1.6rem', userSelect: 'none' }}>Admin</p>
+                            <Menu items={adminMenu} onChange={handleMenuChange}>
+                                <Image className={cx('user-avatar')} src="https://i.imgur.com/ahQ0Jib.jpeg" alt="img" />
+                            </Menu>
+                        </div>
+                    ) : (
                         <Menu items={userMenu} onChange={handleMenuChange}>
                             <Image
                                 className={cx('user-avatar')}
@@ -126,14 +146,14 @@ function Header() {
                                 // fallback='/'
                             />
                         </Menu>
-                    ) : (
-                        <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                            <div>
-                                <Image className={cx('user-avatar')} src={images.noImage} alt="no_image" />
-                            </div>
-                        </Menu>
-                    )}
-                </div>
+                    )
+                ) : (
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
+                        <div>
+                            <Image className={cx('user-avatar')} src={images.noImage} alt="no_image" />
+                        </div>
+                    </Menu>
+                )}
             </div>
         </div>
     );

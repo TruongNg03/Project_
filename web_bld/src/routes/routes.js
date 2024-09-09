@@ -1,7 +1,7 @@
 import config from '~/config';
 
 // layout
-import { HeaderOnly } from '~/layouts';
+import { HeaderOnly, HeaderSidebar } from '~/layouts';
 
 // pages
 import Home from '~/pages/Home';
@@ -12,6 +12,7 @@ import Profile from '~/pages/Profile';
 import Login from '~/pages/Login';
 import Register from '~/pages/Register';
 import EditProfile from '~/pages/EditProfile';
+import Activity from '~/pages/Activity';
 
 // public routes
 const publicRoutes = [
@@ -28,4 +29,12 @@ const privateRoutes = [
     { path: config.routes.editProfile, component: EditProfile, layout: HeaderOnly },
 ];
 
-export { publicRoutes, privateRoutes };
+const adminRoutes = [
+    { path: config.routes.activities, component: Activity, layout: HeaderSidebar },
+    { path: config.routes.hospitals, component: Activity, layout: HeaderSidebar },
+    { path: config.routes.bloodDonors, component: Activity, layout: HeaderSidebar },
+    { path: config.routes.userAccounts, component: Activity, layout: HeaderSidebar },
+    { path: config.routes.userProfiles, component: Activity, layout: HeaderSidebar },
+];
+
+export { publicRoutes, privateRoutes, adminRoutes };

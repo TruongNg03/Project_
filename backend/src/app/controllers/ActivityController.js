@@ -6,12 +6,12 @@ class ActivityController {
     res.render('activities/create');
   }
 
-  // [POST] /activity/store
+  // [POST] /activity/create
   store(req, res, next) {
     const activity = new Activity(req.body);
     activity
       .save()
-      .then(() => res.redirect('/me/stored/activities'))
+      .then(() => res.status(200).json(req.body))
       .catch(next);
   }
 
@@ -27,14 +27,14 @@ class ActivityController {
   update(req, res, next) {
     Activity.updateOne({ _id: req.params.id }, req.body)
       .lean()
-      .then(() => res.redirect('/me/stored/activities'))
+      .then(() => res.status(200).json(req.body))
       .catch(next);
   }
 
   // [DELETE] /activities/:id
   destroy(req, res, next) {
     Activity.delete({ _id: req.params.id })
-      .then(() => res.redirect('back'))
+      .then(() => res.status(200).json({ message: 'Deleted!' }))
       .catch(next);
   }
 

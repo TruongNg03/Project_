@@ -37,7 +37,7 @@ function UserProfile() {
                             <thead className={cx('thead')}>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">UserId</th>
+                                    <th scope="col" className={cx('user-id')}>UserId</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Gender</th>
                                     <th scope="col">Address</th>
@@ -54,7 +54,7 @@ function UserProfile() {
                                     allProfiles.map((profile, count) => (
                                         <tr key={profile._id}>
                                             <th scope="row">{count + 1}</th>
-                                            <td>{profile.userId}</td>
+                                            <td className={cx('user-id')}>{profile.userId}</td>
                                             <td>{profile.name}</td>
                                             <td>{profile.gender}</td>
                                             <td>{profile.address}</td>

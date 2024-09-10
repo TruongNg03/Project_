@@ -55,9 +55,15 @@ td {
     border-bottom: 1px solid #ddd;
 }
 
+// only id
+.user-id {
+    max-width: 130px;
+    word-wrap: break-word;
+}
+
 // only password
 .password {
-    max-width: 300px;
+    max-width: 200px;
     word-wrap: break-word;
 }
 

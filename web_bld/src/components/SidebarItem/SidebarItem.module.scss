@@ -24,6 +24,16 @@
     }
 }
 
+// css child class
+.child > .title {
+    display: flex;
+    flex-direction: row;
+
+    .dot {
+        padding: 0 8px;
+    }
+}
+
 .title {
     font-size: 1.8rem;
     font-weight: bold;

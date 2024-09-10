@@ -80,7 +80,7 @@ function Event() {
 
     // not find by date
     const handleSearchDate = () => {
-        setShowDateRange(!showDateRange);
+        setShowDateRange(false);
     };
 
     const submitActivity = async (e) => {

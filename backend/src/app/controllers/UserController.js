@@ -33,7 +33,7 @@ class UserController {
   // [PATCH] /user/:id/restore
   restore(req, res, next) {
     User.restore({ _id: req.params.id })
-      .then(() => res.redirect('back'))
+      .then(() => res.status(200).json({ message: 'restored!' }))
       .catch(next);
   }
 

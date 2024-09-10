@@ -5,17 +5,27 @@ import styles from './SidebarItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-function SidebarItem({ title, to }) {
+function SidebarItem({ title, className, child = false, to }) {
+    const classes = cx('sidebar-item', {
+        [className]: className,
+        child,
+    });
+
     return (
-        <NavLink className={(nav) => cx('sidebar-item', { active: nav.isActive })} to={to}>
-            <span className={cx('title')}>{title}</span>
+        <NavLink className={(nav) => cx(classes, { active: nav.isActive })} to={to}>
+            <div className={cx('title')}>
+                {child && <p className={cx('dot')}>●</p>}
+                <p>{title}</p>
+            </div>
         </NavLink>
     );
 }
 
 SidebarItem.propTypes = {
     title: PropTypes.string.isRequired,
-    to: PropTypes.string.isRequired,
+    to: PropTypes.string,
+    className: PropTypes.string,
+    child: PropTypes.bool,
 };
 
 export default SidebarItem;

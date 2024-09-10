@@ -17,6 +17,7 @@ import UserAccount from '~/pages/UserAccount';
 import UserProfile from '~/pages/UserProfile';
 import Hospital from '~/pages/Hospital';
 import BloodDonor from '~/pages/BloodDonor';
+import TrashUsers from '~/pages/TrashUsers';
 
 // public routes
 const publicRoutes = [
@@ -39,6 +40,7 @@ const adminRoutes = [
     { path: config.routes.bloodDonors, component: BloodDonor, layout: HeaderSidebar },
     { path: config.routes.userAccounts, component: UserAccount, layout: HeaderSidebar },
     { path: config.routes.userProfiles, component: UserProfile, layout: HeaderSidebar },
+    { path: config.routes.trashUsers, component: TrashUsers, layout: HeaderSidebar },
 ];
 
 export { publicRoutes, privateRoutes, adminRoutes };

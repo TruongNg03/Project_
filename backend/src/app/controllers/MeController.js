@@ -50,7 +50,7 @@ class MeController {
     Activity.findWithDeleted({ deleted: true })
       .sortable(req)
       .lean()
-      .then((activities) => res.render('me/trash-activities', { activities }))
+      .then((activities) => res.status(200).json({ activities }))
       .catch(next);
   }
 
@@ -59,7 +59,7 @@ class MeController {
     User.findWithDeleted({ deleted: true })
       .sortable(req)
       .lean()
-      .then((activities) => res.status(200).json({ activities }))
+      .then((users) => res.status(200).json({ users }))
       .catch(next);
   }
 

@@ -17,6 +17,8 @@ const routes = {
     bloodDonors: '/admin/manage/blood-donors',
     userAccounts: '/admin/manage/user-accounts',
     userProfiles: '/admin/manage/user-profiles',
+    // trash
+    trashUsers: '/admin/manage/trash/users',
 };
 
 export default routes;

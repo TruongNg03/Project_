@@ -1,10 +1,10 @@
-.activity {
+.hospital {
     width: 100%;
     padding: 10px;
 }
 
-// create activity css
-.post-activity {
+// css create hospital
+.post-hospital {
     display: flex;
     flex-direction: column;
     padding: 0 24px;
@@ -12,7 +12,7 @@
     border-radius: 15px;
 }
 
-.post-activity-title {
+.post-hospital-title {
     height: 56px;
     display: flex;
     align-items: center;
@@ -25,7 +25,7 @@
     }
 }
 
-.post-activity-form {
+.post-hospital-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,79 +43,6 @@
     &:focus {
         border: 1px solid #6680ff;
     }
-}
-
-// hospital option
-.list-hospitals {
-    position: relative;
-    width: 100%;
-    margin-top: 8px;
-}
-
-.hospital-label {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid #f1f4f9;
-    border-radius: 8px;
-    padding: 10px;
-    color: rgba(0, 0, 0, 0.85);
-    background-color: #fff;
-    cursor: pointer;
-
-    .hospital-text {
-        font-size: 1.4rem;
-    }
-
-    .hospital-placeholder {
-        font-size: 1.4rem;
-        opacity: 0.5;
-    }
-
-    .chevron-icon {
-        font-size: 1.2rem;
-        color: #b2bdce;
-    }
-
-    &:hover {
-        border: 1px solid #6680ff;
-
-        .chevron-icon {
-            color: #6680ff;
-        }
-    }
-}
-
-.list-options {
-    position: absolute;
-    width: 100%;
-    padding: 8px 0;
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    color: rgba(0, 0, 0, 0.85);
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 12px 24px rgba(47, 63, 86, 0.2);
-    z-index: 1;
-
-    .option {
-        margin: 4px;
-        padding: 10px 12px;
-        font-size: 1.4rem;
-        border-radius: 8px;
-        cursor: pointer;
-
-        &:hover {
-            color: #6680ff;
-            background-color: #eff2ff;
-        }
-    }
-}
-
-.hide-form {
-    display: none;
 }
 
 .submit-btn {
@@ -145,7 +72,8 @@
     }
 }
 
-.list-activities {
+// css list
+.list-hospitals {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -179,6 +107,14 @@
 .table {
     width: 100%;
     border-collapse: collapse;
+
+    thead {
+        user-select: none;
+    }
+
+    thead > tr > .password {
+        cursor: pointer;
+    }
 }
 
 th,
@@ -202,7 +138,7 @@ td {
     }
 }
 
-// edit activity form
+// edit hospital form
 .edit-form {
     position: fixed;
     top: 0;
@@ -216,7 +152,7 @@ td {
     z-index: 100;
 }
 
-.edit-activity {
+.edit-hospital {
     width: 90%;
     max-width: 800px;
     padding: 20px;
@@ -246,6 +182,7 @@ td {
     gap: 10px;
 }
 
+// submit btn
 .submit-btn-edit-form {
     width: 90%;
     max-width: 150px;

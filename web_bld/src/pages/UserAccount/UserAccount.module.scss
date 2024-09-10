@@ -1,0 +1,89 @@
+.user-account {
+    width: 100%;
+    padding: 10px;
+}
+
+// css list
+.list-users {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 0 24px;
+    background-color: #f5f6fb;
+    border-radius: 15px;
+}
+
+.list-title {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+    p {
+        font-size: 2.4rem;
+        user-select: none;
+        cursor: pointer;
+    }
+}
+
+.list {
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 10px 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    overflow-x: scroll;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        user-select: none;
+    }
+
+    thead > tr > .password {
+        cursor: pointer;
+    }
+}
+
+th,
+td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+// only password
+.password {
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.all-btn-link {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px;
+
+    .btn-link {
+        padding: 5px;
+        color: #0f6efd;
+        cursor: pointer;
+    }
+}
+
+// alert
+.fixed-alert {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}

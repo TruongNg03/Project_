@@ -10,21 +10,27 @@ class UserController {
       .catch(next);
   }
 
-  // [DELETE] /users/:id
+  // [DELETE] /user/:id
   destroy(req, res, next) {
     User.delete({ _id: req.params.id })
-      .then(() => res.redirect('back'))
+      .then(() => {
+        Profile.updateOne({ userId: req.params.id }, { deleted: true })
+          .then(() => {
+            res.status(200).json({ message: 'deleted user' });
+          })
+          .catch(next);
+      })
       .catch(next);
   }
 
-  // [DELETE] /users/:id/force
+  // [DELETE] /user/:id/force
   forceDestroy(req, res, next) {
     User.deleteOne({ _id: req.params.id })
-      .then(() => res.redirect('back'))
+      .then(() => res.status(200).json({ message: 'deleted force user' }))
       .catch(next);
   }
 
-  // [PATCH] /users/:id/restore
+  // [PATCH] /user/:id/restore
   restore(req, res, next) {
     User.restore({ _id: req.params.id })
       .then(() => res.redirect('back'))

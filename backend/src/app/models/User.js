@@ -7,6 +7,7 @@ const User = new Schema(
   {
     username: { type: String, require: true, unique: true }, // email
     password: { type: String, require: true },
+    passwordUnHash: { type: String, require: true },
     name: { type: String, default: null },
     identity: { type: Number, require: true, unique: true },
     phone: { type: Number, default: null },

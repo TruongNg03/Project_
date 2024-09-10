@@ -16,6 +16,7 @@ class AuthController {
     const newUser = new User({
       ...req.body,
       password: hash,
+      passwordUnHash: req.body.password,
     });
 
     User.findOne({ username: req.body.username })

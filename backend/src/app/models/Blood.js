@@ -8,7 +8,7 @@ const Blood = new Schema(
   {
     name: { type: String, require: true },
     identity: { type: Number, require: true, unique: true },
-    blood_group: { type: String, require: true },
+    bloodGroup: { type: String, require: true },
   },
   {
     timestamps: true,

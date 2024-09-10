@@ -54,6 +54,15 @@ class MeController {
       .catch(next);
   }
 
+  // [GET] /me/trash/users
+  trashUsers(req, res, next) {
+    User.findWithDeleted({ deleted: true })
+      .sortable(req)
+      .lean()
+      .then((activities) => res.status(200).json({ activities }))
+      .catch(next);
+  }
+
   // users
   // [GET] /me/stored/users-account?id={_id}&_sort&column={...}&type={asc/desc}
   storedUsers(req, res, next) {

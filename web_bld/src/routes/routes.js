@@ -13,6 +13,10 @@ import Login from '~/pages/Login';
 import Register from '~/pages/Register';
 import EditProfile from '~/pages/EditProfile';
 import Activity from '~/pages/Activity';
+import UserAccount from '~/pages/UserAccount';
+import UserProfile from '~/pages/UserProfile';
+import Hospital from '~/pages/Hospital';
+import BloodDonor from '~/pages/BloodDonor';
 
 // public routes
 const publicRoutes = [
@@ -31,10 +35,10 @@ const privateRoutes = [
 
 const adminRoutes = [
     { path: config.routes.activities, component: Activity, layout: HeaderSidebar },
-    { path: config.routes.hospitals, component: Activity, layout: HeaderSidebar },
-    { path: config.routes.bloodDonors, component: Activity, layout: HeaderSidebar },
-    { path: config.routes.userAccounts, component: Activity, layout: HeaderSidebar },
-    { path: config.routes.userProfiles, component: Activity, layout: HeaderSidebar },
+    { path: config.routes.hospitals, component: Hospital, layout: HeaderSidebar },
+    { path: config.routes.bloodDonors, component: BloodDonor, layout: HeaderSidebar },
+    { path: config.routes.userAccounts, component: UserAccount, layout: HeaderSidebar },
+    { path: config.routes.userProfiles, component: UserProfile, layout: HeaderSidebar },
 ];
 
 export { publicRoutes, privateRoutes, adminRoutes };

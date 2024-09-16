@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "66d87fdfed94cae936918fda"
+  },
+  "imageUrl": "http://localhost:8080/img/background-1.jpg"
+},
+{
+  "_id": {
+    "$oid": "66d8806ded94cae936918fdf"
+  },
+  "imageUrl": "http://localhost:8080/img/background-2.jpg"
+},
+{
+  "_id": {
+    "$oid": "66d88087ed94cae936918fe0"
+  },
+  "imageUrl": "http://localhost:8080/img/background-3.jpg"
+}]

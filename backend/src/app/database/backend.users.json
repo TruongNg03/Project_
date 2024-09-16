@@ -1,0 +1,209 @@
+[{
+  "_id": {
+    "$oid": "66c4b3c0a040113223d27750"
+  },
+  "username": "abcd1234@gmail.com",
+  "password": "$2b$10$2cA7T.FZUIbnaLLgnsxAr.uZMzw8S6t1JfeQusFUFzZ6dNJDT1DOW",
+  "name": "Nguyễn Văn B",
+  "identity": 32647,
+  "phone": 987654321,
+  "date": null,
+  "admin": false,
+  "employee": false,
+  "user": true,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-20T15:18:24.497Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-20T15:18:24.497Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c58206568ed9f3a4ed4f4c"
+  },
+  "username": "admin00@gmail.com",
+  "password": "$2b$10$zaxw9pC/2kWFjw/YVSYrDu9LD.y1NbsANqHZvflzPQrQgNlxUW3wS",
+  "name": "Truong Ng",
+  "identity": 131220032003,
+  "phone": 123456789,
+  "date": {
+    "$date": "2003-12-13T00:00:00.000Z"
+  },
+  "admin": true,
+  "employee": false,
+  "user": true,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-21T05:58:30.351Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-21T05:58:30.351Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c58291568ed9f3a4ed4f4f"
+  },
+  "username": "user1@gmail.com",
+  "password": "$2b$10$G5sYO7//Ppl/z.XO5CEyYuuzylxXDJtS1I0BmD9Zr1ALxSND8lqGq",
+  "name": "Nguyễn Văn A",
+  "identity": 12345678,
+  "phone": 987654321,
+  "date": null,
+  "admin": false,
+  "employee": false,
+  "user": true,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-21T06:00:49.578Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-21T06:00:49.578Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c6f2dc2959bff41a21a8a4"
+  },
+  "username": "user1234@gmail.com",
+  "password": "$2b$10$sdOn2IPRONLJeqJqLhi1Xut1DKLUtE0/L99DwzvTSi7TPbZKoJgFm",
+  "name": "Nguyễn Văn C",
+  "identity": 12121212,
+  "phone": 987654321,
+  "date": null,
+  "admin": false,
+  "employee": false,
+  "user": true,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-22T08:12:12.089Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-22T08:12:12.089Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d979308df4987aeb6fe4e9"
+  },
+  "username": "abcd123455@gmail.com",
+  "password": "$2b$10$Ej696NR9zDoJjxj.R4Sm3uYAoPQddmDbZWmW.HwIkt5l63F9QOPoi",
+  "name": "",
+  "identity": 12345678545353,
+  "phone": null,
+  "date": null,
+  "admin": false,
+  "employee": false,
+  "user": true,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-09-05T09:26:08.266Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-05T09:26:08.266Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d9c335a86a42b985988294"
+  },
+  "username": "asdf1234@gmail.com",
+  "password": "$2b$10$vr91/co1l1gWugAJTdXTqu04HjFPW7evBfSbcF.dQeNg1BpAtUL.e",
+  "name": null,
+  "identity": 87832748334,
+  "phone": null,
+  "date": null,
+  "admin": false,
+  "employee": false,
+  "user": true,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-09-05T14:41:57.023Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-05T14:41:57.023Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d9c58ea86a42b9859882e0"
+  },
+  "username": "asdf1235@gmail.com",
+  "password": "$2b$10$twsrqPgaNSymwx9PevhUDes.greRBwIaYCVG0AzjiNWh.gsRYa0ny",
+  "name": null,
+  "identity": 432489023,
+  "phone": null,
+  "date": null,
+  "admin": false,
+  "employee": false,
+  "user": true,
+  "deleted": true,
+  "createdAt": {
+    "$date": "2024-09-05T14:51:58.509Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T14:46:35.957Z"
+  },
+  "__v": 0,
+  "deletedAt": {
+    "$date": "2024-09-10T14:46:35.957Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d9d35b7f3a7f89e59f6e36"
+  },
+  "username": "asdf12345678@gmail.com",
+  "password": "$2b$10$CTbxfJEwTwFV9M/n9iGWduvvm4iyo7thgZtJRcT/BJWAoyBZyVZsS",
+  "name": "",
+  "identity": 3243411,
+  "phone": null,
+  "date": null,
+  "admin": false,
+  "employee": false,
+  "user": true,
+  "deleted": true,
+  "createdAt": {
+    "$date": "2024-09-05T15:50:51.247Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T14:46:31.606Z"
+  },
+  "__v": 0,
+  "deletedAt": {
+    "$date": "2024-09-10T14:46:31.606Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d9de46f3157d5b96c5db6d"
+  },
+  "username": "test_acc_01@gmail.com",
+  "password": "$2b$10$4PGwOklQqphHJrZRbFMbfOeVv19s5KpzwnvtugwbOS3Hbh/P8n95O",
+  "name": null,
+  "identity": 74692834,
+  "phone": null,
+  "date": null,
+  "admin": false,
+  "employee": false,
+  "user": true,
+  "createdAt": {
+    "$date": "2024-09-05T16:37:26.508Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T14:46:25.608Z"
+  },
+  "__v": 0,
+  "deleted": true,
+  "deletedAt": {
+    "$date": "2024-09-10T14:46:25.607Z"
+  }
+}]

@@ -1,0 +1,218 @@
+[{
+  "_id": {
+    "$oid": "66c6f2dc2959bff41a21a8a6"
+  },
+  "userId": "66c6f2dc2959bff41a21a8a4",
+  "name": "Nguyễn Văn C",
+  "phone": 987654321,
+  "date": null,
+  "address": null,
+  "background": "66d87fdfed94cae936918fda",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-22T08:12:12.096Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-22T08:12:12.096Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c6fac2a7cdbb10719b87a4"
+  },
+  "userId": "66c4b3c0a040113223d27750",
+  "name": "User 1234",
+  "phone": 1234567890,
+  "date": {
+    "$date": "2003-02-22T00:00:00.000Z"
+  },
+  "address": "Hoàng Mai, Hà Nội",
+  "background": "66d87fdfed94cae936918fda",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-22T08:45:54.904Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-08T12:49:11.659Z"
+  },
+  "__v": 0,
+  "gender": "Prefer not to say",
+  "idActivity": null,
+  "signature": ""
+},
+{
+  "_id": {
+    "$oid": "66c6faf01e784e83e61cc4a5"
+  },
+  "userId": "66c58206568ed9f3a4ed4f4c",
+  "name": "Truong Ng 01",
+  "phone": 123456789,
+  "date": {
+    "$date": "2003-12-13T00:00:00.000Z"
+  },
+  "address": "Ha Noi",
+  "background": "66d8806ded94cae936918fdf",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-22T08:46:40.557Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T15:23:26.168Z"
+  },
+  "__v": 0,
+  "idActivity": null,
+  "gender": "Other",
+  "signature": "Hello everyone!"
+},
+{
+  "_id": {
+    "$oid": "66c6fb061e784e83e61cc4a9"
+  },
+  "userId": "66c58291568ed9f3a4ed4f4f",
+  "name": null,
+  "phone": null,
+  "date": null,
+  "address": null,
+  "background": "66d87fdfed94cae936918fda",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-22T08:47:02.090Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-22T08:47:02.090Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d979308df4987aeb6fe4ed"
+  },
+  "userId": "66d979308df4987aeb6fe4e9",
+  "name": "",
+  "signature": null,
+  "gender": "Prefer not to say",
+  "phone": null,
+  "date": null,
+  "address": null,
+  "background": "66d87fdfed94cae936918fda",
+  "idActivity": null,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-09-05T09:26:08.276Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-05T09:26:08.276Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d9c335a86a42b985988298"
+  },
+  "userId": "66d9c335a86a42b985988294",
+  "name": null,
+  "signature": null,
+  "gender": "Prefer not to say",
+  "phone": null,
+  "date": null,
+  "address": null,
+  "background": "66d87fdfed94cae936918fda",
+  "idActivity": null,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-09-05T14:41:57.036Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-05T14:41:57.036Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d9c58ea86a42b9859882e4"
+  },
+  "userId": "66d9c58ea86a42b9859882e0",
+  "name": null,
+  "signature": null,
+  "gender": "Prefer not to say",
+  "phone": null,
+  "date": null,
+  "address": null,
+  "background": "66d87fdfed94cae936918fda",
+  "idActivity": null,
+  "deleted": true,
+  "createdAt": {
+    "$date": "2024-09-05T14:51:58.516Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T14:46:35.959Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d9d35b7f3a7f89e59f6e3a"
+  },
+  "userId": "66d9d35b7f3a7f89e59f6e36",
+  "name": "",
+  "signature": null,
+  "gender": "Prefer not to say",
+  "phone": null,
+  "date": null,
+  "address": null,
+  "background": "66d87fdfed94cae936918fda",
+  "idActivity": null,
+  "deleted": true,
+  "createdAt": {
+    "$date": "2024-09-05T15:50:51.256Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T14:46:31.610Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d9de46f3157d5b96c5db71"
+  },
+  "userId": "66d9de46f3157d5b96c5db6d",
+  "name": null,
+  "signature": null,
+  "gender": "Prefer not to say",
+  "phone": null,
+  "date": null,
+  "address": null,
+  "background": "66d87fdfed94cae936918fda",
+  "idActivity": null,
+  "deleted": true,
+  "createdAt": {
+    "$date": "2024-09-05T16:37:26.515Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T06:00:02.885Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66dfd37b7cdb18da537eed4d"
+  },
+  "userId": "66dfd37b7cdb18da537eed49",
+  "name": null,
+  "signature": null,
+  "gender": "Prefer not to say",
+  "phone": null,
+  "date": null,
+  "address": null,
+  "background": "66d87fdfed94cae936918fda",
+  "idActivity": null,
+  "deleted": true,
+  "createdAt": {
+    "$date": "2024-09-10T05:04:59.530Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T05:59:43.581Z"
+  },
+  "__v": 0
+}]

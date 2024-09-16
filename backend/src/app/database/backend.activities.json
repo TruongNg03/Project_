@@ -1,0 +1,192 @@
+[{
+  "_id": {
+    "$oid": "66bcc262a12a95b5af8416c1"
+  },
+  "title": "Truyền máu Huyết học 1",
+  "locate": "Tương Mai, Hoàng Mai, Hà Nội",
+  "timeActive": "11/08/2024 - Từ 07:00 đến 16:30",
+  "timeStart": "07:00 - 11:30; 13:30 - 16:00",
+  "amount": 10,
+  "max": 60,
+  "createdAt": {
+    "$date": "2024-08-14T14:42:42.530Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T08:46:38.538Z"
+  },
+  "slug": "truyen-mau-huyet-hoc-1",
+  "__v": 0,
+  "hospital": "Bệnh viện 1",
+  "dateActive": {
+    "$date": "2024-08-14T14:42:42.530Z"
+  },
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "66bcc267a12a95b5af8416c6"
+  },
+  "title": "Truyền máu Huyết học 2",
+  "locate": "Tương Mai, Hoàng Mai, Hà Nội",
+  "timeActive": "11/08/2024 - Từ 07:00 đến 16:30",
+  "timeStart": "07:00 - 11:30; 13:30 - 16:00",
+  "amount": 10,
+  "max": 60,
+  "createdAt": {
+    "$date": "2024-08-14T14:42:47.524Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-14T16:54:49.576Z"
+  },
+  "slug": "truyen-mau-huyet-hoc-2",
+  "__v": 0,
+  "hospital": "Bệnh viện 2",
+  "dateActive": {
+    "$date": "2024-08-14T14:42:47.524Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66bcc26aa12a95b5af8416cb"
+  },
+  "title": "Truyền máu Huyết học 3",
+  "locate": "Tương Mai, Hoàng Mai, Hà Nội",
+  "timeActive": "11/08/2024 - Từ 07:00 đến 16:30",
+  "timeStart": "07:00 - 11:30; 13:30 - 16:00",
+  "amount": 10,
+  "max": 60,
+  "createdAt": {
+    "$date": "2024-08-14T14:42:50.004Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-15T14:36:52.875Z"
+  },
+  "slug": "truyen-mau-huyet-hoc-3",
+  "__v": 0,
+  "hospital": "Bệnh viện 3",
+  "dateActive": {
+    "$date": "2024-08-14T14:42:50.004Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66bce85a172c736a74ff01af"
+  },
+  "title": "Truyền máu Huyết học 4",
+  "locate": "Tương Mai, Hoàng Mai, Hà Nội",
+  "timeActive": "11/08/2024 - Từ 07:00 đến 16:30",
+  "timeStart": "07:00 - 11:30; 13:30 - 16:00",
+  "amount": 60,
+  "max": 60,
+  "createdAt": {
+    "$date": "2024-08-14T17:24:42.811Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-23T04:14:50.813Z"
+  },
+  "slug": "truyen-mau-huyet-hoc-4",
+  "__v": 0,
+  "hospital": "Bệnh viện 3",
+  "dateActive": {
+    "$date": "2024-08-14T17:24:42.811Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66bce861172c736a74ff01b4"
+  },
+  "title": "Truyền máu Huyết học 5",
+  "locate": "Tương Mai, Hoàng Mai, Hà Nội",
+  "timeActive": "11/08/2024 - Từ 07:00 đến 16:30",
+  "timeStart": "07:00 - 11:30; 13:30 - 16:00",
+  "amount": 10,
+  "max": 60,
+  "deleted": true,
+  "createdAt": {
+    "$date": "2024-08-14T17:24:49.781Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-14T17:25:01.854Z"
+  },
+  "slug": "truyen-mau-huyet-hoc-5",
+  "__v": 0,
+  "deletedAt": {
+    "$date": "2024-08-14T17:25:01.853Z"
+  },
+  "hospital": "Bệnh viện 4",
+  "dateActive": {
+    "$date": "2024-08-14T17:24:49.781Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66c4368f61ded568ce6cd7ee"
+  },
+  "title": "Truyền máu Huyết học 004",
+  "locate": "Tương Mai, Hoàng Mai, Hà Nội",
+  "timeActive": "11/08/2024 - Từ 07:00 đến 16:30",
+  "timeStart": "07:00 - 11:30; 13:30 - 16:00",
+  "amount": 40,
+  "max": 50,
+  "deleted": true,
+  "createdAt": {
+    "$date": "2024-08-20T06:24:15.321Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-23T04:14:59.570Z"
+  },
+  "slug": "truyen-mau-huyet-hoc-004",
+  "__v": 0,
+  "deletedAt": {
+    "$date": "2024-08-23T04:14:59.570Z"
+  },
+  "hospital": "Bệnh viện 5",
+  "dateActive": {
+    "$date": "2024-08-20T06:24:15.321Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66df093d2aeb6ee3f95d6896"
+  },
+  "hospital": "Bệnh viện 4",
+  "title": "Truyền máu Huyết học 5",
+  "locate": "Tương Mai, Hoàng Mai, Hà Nội",
+  "timeActive": "07:00 - 11:30; 13:30 - 16:00",
+  "timeStart": "11/08/2024 - Từ 07:00 đến 16:30",
+  "amount": 30,
+  "max": 50,
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-09-09T14:42:05.992Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T14:46:53.238Z"
+  },
+  "slug": "truyen-mau-huyet-hoc-1-WGonq1yxq",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66df171d2aeb6ee3f95d69b0"
+  },
+  "hospital": "Bệnh viện 5",
+  "title": "Truyền máu Huyết học 6",
+  "locate": "Hoàng Mai, Hà Nội",
+  "timeActive": "07:00 - 11:30; 13:30 - 16:00",
+  "timeStart": "11/08/2024 - Từ 07:00 đến 16:30",
+  "amount": 20,
+  "max": 40,
+  "deleted": true,
+  "createdAt": {
+    "$date": "2024-09-09T15:41:17.923Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-09T16:05:46.515Z"
+  },
+  "slug": "truyen-mau-huyet-hoc-6",
+  "__v": 0,
+  "deletedAt": {
+    "$date": "2024-09-09T16:05:46.514Z"
+  }
+}]

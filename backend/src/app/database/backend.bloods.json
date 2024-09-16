@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "66b9bfc1229153404cc321d6"
+  },
+  "name": "Name",
+  "identity": 1234567890,
+  "bloodGroup": "AB",
+  "deleted": false,
+  "updatedAt": {
+    "$date": "2024-09-10T14:39:21.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66b9d3070466ea48432b0699"
+  },
+  "name": "test name 001",
+  "identity": 11322432453,
+  "createdAt": {
+    "$date": "2024-08-12T09:16:55.424Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-12T09:16:55.424Z"
+  },
+  "__v": 0,
+  "bloodGroup": "AB"
+},
+{
+  "_id": {
+    "$oid": "66ba15afc243a56410c91f16"
+  },
+  "name": "test name 003",
+  "identity": 48324783234,
+  "createdAt": {
+    "$date": "2024-08-12T14:01:19.928Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-12T14:01:19.928Z"
+  },
+  "__v": 0,
+  "bloodGroup": "O"
+}]

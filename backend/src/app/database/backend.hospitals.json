@@ -1,0 +1,99 @@
+[{
+  "_id": {
+    "$oid": "66c99f654e1e9623afdcadae"
+  },
+  "name": "Bệnh viện 1",
+  "address": "Tương Mai, Hoàng Mai, Hà Nội",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-24T08:52:53.052Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T09:41:14.222Z"
+  },
+  "slug": "benh-vien-1",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c99f734e1e9623afdcadb2"
+  },
+  "name": "Bệnh viện 2",
+  "address": "Tương Mai, Hoàng Mai, Hà Nội",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-24T08:53:07.842Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-24T08:53:07.842Z"
+  },
+  "slug": "benh-vien-2",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c99f794e1e9623afdcadb6"
+  },
+  "name": "Bệnh viện 3",
+  "address": "Tương Mai, Hoàng Mai, Hà Nội",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-24T08:53:13.255Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-24T08:53:13.255Z"
+  },
+  "slug": "benh-vien-3",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c99f804e1e9623afdcadba"
+  },
+  "name": "Bệnh viện 4",
+  "address": "Hoàng Mai, Hà Nội",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-24T08:53:20.372Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-24T08:53:20.372Z"
+  },
+  "slug": "benh-vien-4",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c99f854e1e9623afdcadbe"
+  },
+  "name": "Bệnh viện 5",
+  "address": "Hoàng Mai, Hà Nội",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-08-24T08:53:25.045Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T09:39:40.464Z"
+  },
+  "slug": "benh-vien-5",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66e00c67ad324dbc6f8cb049"
+  },
+  "name": "Bệnh viện 6",
+  "address": "Tương Mai, Hoàng Mai, Hà Nội",
+  "deleted": true,
+  "createdAt": {
+    "$date": "2024-09-10T09:07:51.806Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-10T09:09:06.345Z"
+  },
+  "slug": "benh-vien-6",
+  "__v": 0,
+  "deletedAt": {
+    "$date": "2024-09-10T09:09:06.342Z"
+  }
+}]

@@ -1,6 +1,5 @@
 # Project_
-// Goal: complete within 2-3 weeks
+// Done
 
-Start project (localhost:3001)
-cd web_bld
-npm start
+* Learn ReactJS & NodeJS from [here](https://fullstack.edu.vn/)
+* Get UI profile page from HoyoLab

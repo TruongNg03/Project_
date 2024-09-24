@@ -110,6 +110,7 @@ function Login() {
             localStorage.setItem('user', JSON.stringify(credentials));
 
             navigate('/');
+            window.location.reload(false);
         } catch (err) {
             dispatch({ type: 'LOGIN_FAILURE', payload: err.response.data });
             setShowError(true);

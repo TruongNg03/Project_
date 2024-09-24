@@ -33,7 +33,12 @@ class UserController {
   // [PATCH] /user/:id/restore
   restore(req, res, next) {
     User.restore({ _id: req.params.id })
-      .then(() => res.status(200).json({ message: 'restored!' }))
+      .then(() => {
+        Profile.restore({ userId: req.params.id })
+          .then(() => res.status(200).json({ message: 'restored!' }))
+          .catch(next);
+        res.status(200).json({ message: 'restored!' });
+      })
       .catch(next);
   }
 

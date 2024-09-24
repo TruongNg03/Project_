@@ -25,13 +25,13 @@ class MeController {
         if (hospital) {
           if (hospital === 'Tất cả') {
             res.status(200).json(activities);
+          } else {
+            Activity.find({ hospital: req.query.hospital })
+              .then((activity) => {
+                res.status(200).json(activity);
+              })
+              .catch(next);
           }
-
-          Activity.find({ hospital: req.query.hospital })
-            .then((activity) => {
-              res.status(200).json(activity);
-            })
-            .catch(next);
         } else if (id) {
           Activity.findById({ _id: req.query.id })
             .then((activity) => {
@@ -84,9 +84,11 @@ class MeController {
       .catch(next);
   }
 
-  // [GET] /me/stored/users-profile
+  // [GET] /me/stored/users-profile?activity=...
   storedProfiles(req, res, next) {
-    Promise.all([Profile.find({})])
+    const activity = req.query.activity;
+
+    Promise.all([Profile.find({ idActivity: { $ne: activity === 'true' ? null : !null } })])
       .then(([profiles]) => {
         res.status(200).json(profiles);
       })

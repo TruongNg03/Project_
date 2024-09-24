@@ -69,7 +69,7 @@ function UserProfile() {
                                 ) : (
                                     <tr>
                                         <td
-                                            colSpan={8}
+                                            colSpan={11}
                                             style={{
                                                 paddingTop: '10px',
                                                 borderStyle: 'none',
@@ -77,7 +77,7 @@ function UserProfile() {
                                                 fontSize: '1.6rem',
                                             }}
                                         >
-                                            You don't have any users
+                                            You don't have any users profile
                                         </td>
                                     </tr>
                                 )}

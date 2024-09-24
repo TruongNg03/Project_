@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import classNames from 'classnames/bind';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpAZ, faArrowDownAZ } from '@fortawesome/free-solid-svg-icons';
 import styles from './UserAccount.module.scss';
 import Alert from '~/components/Alert';
+import { type } from '@testing-library/user-event/dist/type';
 
 const cx = classNames.bind(styles);
 
@@ -12,11 +15,18 @@ function UserAccount() {
     const [showNotify, setShowNotify] = useState(false);
     const [allUsers, setAllUser] = useState();
     const [userId, setUserId] = useState();
+    const [columnSort, setColumnSort] = useState('username');
+    const [typeSort, setTypeSort] = useState('asc');
+    const [showSortUsernameCol, setShowUsernameCol] = useState(false);
+    const [showSortCreateAtCol, setShowSortCreateAtCol] = useState(false);
+    const [showSortUpdateAtCol, setShowSortUpdateAtCol] = useState(false);
 
     // fetch api
     useEffect(() => {
         async function getUsers() {
-            const users = await fetch('http://localhost:8080/me/stored/users-account');
+            const users = await fetch(
+                `http://localhost:8080/me/stored/users-account?_sort&column=username&type=${typeSort}`,
+            );
             const listUsers = await users.json();
 
             setAllUser(listUsers);
@@ -61,6 +71,35 @@ function UserAccount() {
         }
     };
 
+    // sort column
+    const handleSortColumn = async (e) => {
+        setColumnSort(e.target.id);
+        setTypeSort(typeSort === 'asc' ? 'desc' : 'asc');
+
+        if (e.target.id === 'username') {
+            setShowUsernameCol(true);
+        }
+
+        if (e.target.id === 'createdAt') {
+            setShowSortCreateAtCol(true);
+        }
+
+        if (e.target.id === 'updatedAt') {
+            setShowSortUpdateAtCol(true);
+        }
+
+        try {
+            const users = await fetch(
+                `http://localhost:8080/me/stored/users-account?_sort&column=${columnSort}&type=${typeSort}`,
+            );
+            const listUsers = await users.json();
+
+            setAllUser(listUsers);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div className={cx('user-account')}>
             <div className={cx('list-users')}>
@@ -76,13 +115,77 @@ function UserAccount() {
                                     <th scope="col" className={cx('user-id')}>
                                         ID
                                     </th>
-                                    <th scope="col">Username</th>
+                                    <th scope="col" className={cx('sort-col')} id="username" onClick={handleSortColumn}>
+                                        <span id="username">
+                                            <p id="username">Username</p>
+                                            {showSortUsernameCol &&
+                                                (typeSort === 'desc' ? (
+                                                    <FontAwesomeIcon
+                                                        className={cx('arrow-icon')}
+                                                        id="username"
+                                                        icon={faArrowDownAZ}
+                                                    />
+                                                ) : (
+                                                    <FontAwesomeIcon
+                                                        className={cx('arrow-icon')}
+                                                        id="username"
+                                                        icon={faArrowUpAZ}
+                                                    />
+                                                ))}
+                                        </span>
+                                    </th>
                                     <th scope="col" className={cx('password')} onClick={handleShowPass}>
                                         Password {showPassword ? '(UnHash)' : '(Hash)'}
                                     </th>
                                     <th scope="col">Identity</th>
-                                    <th scope="col">Create At</th>
-                                    <th scope="col">Update At</th>
+                                    <th
+                                        scope="col"
+                                        className={cx('sort-col')}
+                                        id="createdAt"
+                                        onClick={handleSortColumn}
+                                    >
+                                        <span id="createdAt">
+                                            <p id="createdAt">Create At</p>
+                                            {showSortCreateAtCol &&
+                                                (typeSort === 'desc' ? (
+                                                    <FontAwesomeIcon
+                                                        className={cx('arrow-icon')}
+                                                        id="createdAt"
+                                                        icon={faArrowDownAZ}
+                                                    />
+                                                ) : (
+                                                    <FontAwesomeIcon
+                                                        className={cx('arrow-icon')}
+                                                        id="createdAt"
+                                                        icon={faArrowUpAZ}
+                                                    />
+                                                ))}
+                                        </span>
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className={cx('sort-col')}
+                                        id="updatedAt"
+                                        onClick={handleSortColumn}
+                                    >
+                                        <span id="updatedAt">
+                                            <p id="updatedAt">Update At</p>
+                                            {showSortUpdateAtCol &&
+                                                (typeSort === 'desc' ? (
+                                                    <FontAwesomeIcon
+                                                        className={cx('arrow-icon')}
+                                                        id="updatedAt"
+                                                        icon={faArrowDownAZ}
+                                                    />
+                                                ) : (
+                                                    <FontAwesomeIcon
+                                                        className={cx('arrow-icon')}
+                                                        id="updatedAt"
+                                                        icon={faArrowUpAZ}
+                                                    />
+                                                ))}
+                                        </span>
+                                    </th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>

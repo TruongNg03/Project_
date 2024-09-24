@@ -15,6 +15,7 @@ const routes = {
     activities: '/admin/manage/activities',
     hospitals: '/admin/manage/hospitals',
     bloodDonors: '/admin/manage/blood-donors',
+    registerActivity: '/admin/manage/register-activities',
     userAccounts: '/admin/manage/user-accounts',
     userProfiles: '/admin/manage/user-profiles',
     // trash

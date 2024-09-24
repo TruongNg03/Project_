@@ -1,0 +1,58 @@
+.register-activity {
+    width: 100%;
+    padding: 10px;
+}
+
+// css list
+.list-register-activity {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 0 24px;
+    background-color: #f5f6fb;
+    border-radius: 15px;
+}
+
+.list-title {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+    p {
+        font-size: 2.4rem;
+        user-select: none;
+        cursor: pointer;
+    }
+}
+
+.list {
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 10px 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    overflow-x: scroll;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        user-select: none;
+    }
+}
+
+// only id
+.user-id {
+    max-width: 130px;
+    word-wrap: break-word;
+}
+
+th,
+td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}

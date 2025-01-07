@@ -5,6 +5,8 @@ import styles from './Profile.module.scss';
 import { Link } from 'react-router-dom';
 import images from '~/assets/images';
 import { format } from 'date-fns';
+
+import Image from '~/components/Image';
 import Item from '~/pages/Profile/Item';
 import Activity from '~/components/Activity';
 import Alert from '~/components/Alert';
@@ -123,7 +125,7 @@ function Profile() {
             {/* background pf page */}
             <div className={cx('background')}>
                 <div className={cx('background-wrapper')}>
-                    <img src={background ? background : images.backgroundProfile} alt="background" />
+                    <Image src={background} alt="background" fallback={images.backgroundProfile} />
                     <div className={cx('mask')}></div>
                 </div>
             </div>
@@ -133,7 +135,12 @@ function Profile() {
                 <div className={headerPage}>
                     <div className={cx('wrapper-header')}>
                         <div className={avatar}>
-                            <img src={images.noImage} alt="avatar" />
+                            <Image
+                                className={cx('avt-item')}
+                                src={user.admin ? 'https://i.imgur.com/ahQ0Jib.jpeg' : images.noImage}
+                                alt="avatar"
+                                fallback={images.noImage}
+                            />
                         </div>
                         <div className={cx('name-title')}>
                             <div className={cx('title')}>
@@ -150,7 +157,7 @@ function Profile() {
                             </div>
                         </div>
                         <Link className={edit} to={config.routes.editProfile}>
-                            <button className={cx('edit-btn')}>Edit</button>
+                            <button className={cx('edit-btn')}>Chỉnh sửa</button>
                         </Link>
                     </div>
                 </div>
@@ -159,23 +166,10 @@ function Profile() {
                 <div className={contentPage}>
                     <div className={cx('wrapper-content')}>
                         <div className={cx('user-activity')}>
-                            <div className={cx('explore')}>
-                                <section className={cx('explore-around')}>
-                                    <strong>Explore Around</strong>
-                                </section>
-                                <div className={cx('list')}>
-                                    <Item header="View Notice" content="All the guides you need in one spot!" />
-                                    <Item header="View Notice" content="All the guides you need in one spot!" />
-                                    <Item header="View Notice" content="All the guides you need in one spot!" />
-                                    <Item header="View Notice" content="All the guides you need in one spot!" />
-                                    <Item header="View Notice" content="All the guides you need in one spot!" />
-                                </div>
-                            </div>
-
                             <div className={cx('activities')}>
                                 {/* same class with explore-around */}
                                 <section className={cx('explore-around')}>
-                                    <strong>Activities</strong>
+                                    <strong>Hoạt động đã đăng ký</strong>
                                 </section>
                                 {!activityResult ? (
                                     <div className={cx('no-activity')}>
@@ -206,12 +200,25 @@ function Profile() {
                                     </div>
                                 )}
                             </div>
+
+                            <div className={cx('explore')}>
+                                <section className={cx('explore-around')}>
+                                    <strong>Explore Around</strong>
+                                </section>
+                                <div className={cx('list')}>
+                                    <Item header="View Notice" content="All the guides you need in one spot!" />
+                                    <Item header="View Notice" content="All the guides you need in one spot!" />
+                                    <Item header="View Notice" content="All the guides you need in one spot!" />
+                                    <Item header="View Notice" content="All the guides you need in one spot!" />
+                                    <Item header="View Notice" content="All the guides you need in one spot!" />
+                                </div>
+                            </div>
                         </div>
 
                         {/* user info */}
                         <div className={cx('user-info')}>
                             <div className={cx('profile-user')}>
-                                <strong>Profile Information</strong>
+                                <strong>Thông tin cá nhân</strong>
                                 <span>
                                     <p>Account ID: {user._id}</p>
                                 </span>
@@ -224,7 +231,7 @@ function Profile() {
                                     </span>
                                     <strong className={cx('name')}>{profileResult.name || user.username}</strong>
                                     <div className={cx('label')}>
-                                        <p>Date</p>
+                                        <p>Ngày sinh</p>
                                         <strong>
                                             {profileResult.date
                                                 ? format(profileResult.date, 'dd-MM-yyyy')
@@ -232,7 +239,7 @@ function Profile() {
                                         </strong>
                                     </div>
                                     <div className={cx('label')}>
-                                        <p>Gender</p>
+                                        <p>Giới tính</p>
                                         <strong>{profileResult.gender || 'Prefer not to say'}</strong>
                                     </div>
                                     <div className={cx('label')}>
@@ -240,15 +247,15 @@ function Profile() {
                                         <strong>{user.username}</strong>
                                     </div>
                                     <div className={cx('label')}>
-                                        <p>Identity</p>
+                                        <p>CCCD</p>
                                         <strong>{user.identity}</strong>
                                     </div>
                                     <div className={cx('label')}>
-                                        <p>Phone</p>
+                                        <p>Số điện thoại</p>
                                         <strong>{profileResult.phone || ''}</strong>
                                     </div>
                                     <div className={cx('label')}>
-                                        <p>Address</p>
+                                        <p>Địa chỉ</p>
                                         <strong>{profileResult.address || ''}</strong>
                                     </div>
                                 </div>
@@ -256,7 +263,7 @@ function Profile() {
                                 <></>
                             )}
                             <div className={contact}>
-                                <strong>Contact</strong>
+                                <strong>Liên hệ</strong>
                                 <span>
                                     <p>Web...</p>
                                     <p>admin_1312@gmail.com</p>

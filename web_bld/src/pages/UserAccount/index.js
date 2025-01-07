@@ -134,9 +134,9 @@ function UserAccount() {
                                                 ))}
                                         </span>
                                     </th>
-                                    <th scope="col" className={cx('password')} onClick={handleShowPass}>
+                                    {/* <th scope="col" className={cx('password')} onClick={handleShowPass}>
                                         Password {showPassword ? '(UnHash)' : '(Hash)'}
-                                    </th>
+                                    </th> */}
                                     <th scope="col">Identity</th>
                                     <th
                                         scope="col"
@@ -196,9 +196,9 @@ function UserAccount() {
                                             <th scope="row">{count + 1}</th>
                                             <td className={cx('user-id')}>{user._id}</td>
                                             <td>{user.username}</td>
-                                            <td className={cx('password')}>
+                                            {/* <td className={cx('password')}>
                                                 {showPassword ? user.passwordUnHash || user.password : user.password}
-                                            </td>
+                                            </td> */}
                                             <td>{user.identity}</td>
                                             <td>{user.createdAt}</td>
                                             <td>{user.updatedAt}</td>
@@ -218,7 +218,7 @@ function UserAccount() {
                                 ) : (
                                     <tr>
                                         <td
-                                            colSpan={8}
+                                            colSpan={7}
                                             style={{
                                                 paddingTop: '10px',
                                                 borderStyle: 'none',

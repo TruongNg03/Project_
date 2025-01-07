@@ -6,9 +6,9 @@ import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
-function Item({ header, content }) {
+function Item({ header, content, to = '#' }) {
     return (
-        <Link to="/faq" className={cx('item')}>
+        <Link to={to} className={cx('item')}>
             <div className={cx('header')}>
                 <img src={images.backgroundItem} alt="background-item" className={cx('background')} />
                 <img src={images.iconNote} alt="icon-item" className={cx('icon')} />
@@ -25,6 +25,7 @@ function Item({ header, content }) {
 Item.propTypes = {
     header: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
+    to: PropTypes.string,
 };
 
 export default Item;

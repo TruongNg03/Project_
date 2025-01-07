@@ -153,15 +153,15 @@ function EditProfile() {
         <div className={cx('edit-profile')}>
             <div className={cx('wrapper')}>
                 <div className={cx('header')}>
-                    <p className={cx('text')}>Complete personal information</p>
+                    <p className={cx('text')}>Hoàn thiện thông tin cá nhân</p>
                 </div>
                 <div className={cx('content')}>
                     <div className={cx('user-background')}>
-                        <button onClick={handleShowChangeBg}>Change Background</button>
+                        <button onClick={handleShowChangeBg}>Thay đổi hình nền</button>
                     </div>
                     <div className={cx('user-info')}>
                         <div className={cx('username')}>
-                            <p className={cx('title')}>Name</p>
+                            <p className={cx('title')}>Tên</p>
                             <input
                                 type="text"
                                 placeholder={userInfo.name || 'Name'}
@@ -172,7 +172,7 @@ function EditProfile() {
                             />
                         </div>
                         <div className={cx('signature')}>
-                            <p className={cx('title')}>Signature</p>
+                            <p className={cx('title')}>ký tên</p>
                             <input
                                 type="text"
                                 value={userInfo.signature || ''}
@@ -181,7 +181,7 @@ function EditProfile() {
                             />
                         </div>
                         <div className={cx('gender')}>
-                            <p className={cx('title')}>Gender</p>
+                            <p className={cx('title')}>Giới tính</p>
                             <div className={cx('gender-label')} onClick={handleListGender}>
                                 <span className={cx('gender-text')}>{userInfo.gender}</span>
                                 {!active ? (
@@ -194,23 +194,23 @@ function EditProfile() {
                             {active && (
                                 <ul className={cx('list-options')}>
                                     <li className={cx('option')} onClick={handleChangeGender}>
-                                        Male
+                                        Nam
                                     </li>
                                     <li className={cx('option')} onClick={handleChangeGender}>
-                                        Female
+                                        Nữ
                                     </li>
                                     <li className={cx('option')} onClick={handleChangeGender}>
-                                        Other
+                                        Khác
                                     </li>
                                     <li className={cx('option')} onClick={handleChangeGender}>
-                                        Prefer not to say
+                                        Bí mật
                                     </li>
                                 </ul>
                             )}
                         </div>
                         {/* date of birth */}
                         <div className={cx('username')}>
-                            <p className={cx('title')}>Date</p>
+                            <p className={cx('title')}>Ngày sinh</p>
                             <input
                                 type="date"
                                 value={userInfo.date ? format(userInfo.date, 'yyyy-MM-dd') : ''}
@@ -218,7 +218,7 @@ function EditProfile() {
                             />
                         </div>
                         <div className={cx('username')}>
-                            <p className={cx('title')}>Phone</p>
+                            <p className={cx('title')}>Số điện thoại</p>
                             <input
                                 type="number"
                                 value={userInfo.phone || ''}
@@ -227,7 +227,7 @@ function EditProfile() {
                             />
                         </div>
                         <div className={cx('username')}>
-                            <p className={cx('title')}>Address</p>
+                            <p className={cx('title')}>Địa chỉ</p>
                             <input
                                 type="text"
                                 value={userInfo.address || ''}
@@ -238,7 +238,7 @@ function EditProfile() {
                     </div>
                     <div className={cx('save')}>
                         <button className={cx('save-btn')} onClick={handleSave}>
-                            Save
+                            Lưu
                         </button>
                     </div>
                 </div>

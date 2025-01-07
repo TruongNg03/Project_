@@ -87,9 +87,9 @@ function TrashUsers() {
                                         ID
                                     </th>
                                     <th scope="col">Username</th>
-                                    <th scope="col" className={cx('password')} onClick={handleShowPass}>
+                                    {/* <th scope="col" className={cx('password')} onClick={handleShowPass}>
                                         Password {showPassword ? '(UnHash)' : '(Hash)'}
-                                    </th>
+                                    </th> */}
                                     <th scope="col">Identity</th>
                                     <th scope="col">Deleted At</th>
                                     <th scope="col"></th>
@@ -102,9 +102,9 @@ function TrashUsers() {
                                             <th scope="row">{count + 1}</th>
                                             <td className={cx('user-id')}>{user._id}</td>
                                             <td>{user.username}</td>
-                                            <td className={cx('password')}>
+                                            {/* <td className={cx('password')}>
                                                 {showPassword ? user.passwordUnHash || user.password : user.password}
-                                            </td>
+                                            </td> */}
                                             <td>{user.identity}</td>
                                             <td>{user.deletedAt}</td>
                                             <td>
@@ -130,7 +130,7 @@ function TrashUsers() {
                                 ) : (
                                     <tr>
                                         <td
-                                            colSpan={7}
+                                            colSpan={6}
                                             style={{
                                                 paddingTop: '10px',
                                                 borderStyle: 'none',

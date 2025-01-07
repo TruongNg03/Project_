@@ -67,7 +67,7 @@
     height: var(--default-height-page);
     vertical-align: top;
 
-    img {
+    .avt-item {
         position: relative;
         top: -80px;
         width: 112px;
@@ -75,6 +75,7 @@
         border-radius: 50%;
         transition: height 300ms ease, width 300ms ease, top 300ms ease;
         background-color: #fff;
+        object-fit: cover;
     }
 }
 
@@ -169,7 +170,7 @@
     display: flex;
     align-items: center;
 
-    img {
+    .avt-item {
         position: relative;
         top: 0;
         width: 32px;

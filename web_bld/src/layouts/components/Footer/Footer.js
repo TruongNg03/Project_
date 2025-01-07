@@ -44,8 +44,8 @@ function Footer() {
                 </div>
             </div>
 
-            <div className={cx('logoList')}>
-                {/* Source image: https://giotmauvang.org.vn/ -- footer*/}
+            {/* Source image: https://giotmauvang.org.vn/ -- footer*/}
+            {/* <div className={cx('logoList')}>
                 <LogoItem
                     title="Đơn vị thành viên:"
                     image1="https://giotmauvang.org.vn/assets/images/8dd6a37f16c9fee509c941224efccb13.png"
@@ -74,7 +74,7 @@ function Footer() {
                     image1="https://giotmauvang.org.vn/assets/images/58a4c0505d96027883cd98d87ba75005.png"
                     alt1="STG"
                 />
-            </div>
+            </div> */}
 
             <p className={cx('copyright')}>Copyright © 2024 - Version 1.0.0</p>
         </div>

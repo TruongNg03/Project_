@@ -3,7 +3,7 @@ import styles from './Home.module.scss';
 import Rights from '~/pages/Home/Rights';
 import Standard from '~/pages/Home/Standard';
 import Notice from '~/pages/Home/Notice';
-import { CalenderIcon } from '~/components/Icons';
+// import { CalenderIcon } from '~/components/Icons';
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +21,7 @@ function Home() {
                             bằng ít máu của mình!
                         </p>
                     </div>
-                    <div className={cx('sec-1-search')}>
+                    {/* <div className={cx('sec-1-search')}>
                         <div className={cx('search-label')}>
                             <div className={cx('search-label-wrapper')}>
                                 <p>Bạn cần đặt lịch vào thời gian nào?</p>
@@ -36,7 +36,7 @@ function Home() {
                         <div className={cx('search-btn')}>
                             <span>Tìm kiếm</span>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

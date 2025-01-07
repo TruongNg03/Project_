@@ -37,7 +37,7 @@ class UserController {
         Profile.restore({ userId: req.params.id })
           .then(() => res.status(200).json({ message: 'restored!' }))
           .catch(next);
-        res.status(200).json({ message: 'restored!' });
+        // res.status(200).json({ message: 'restored!' });
       })
       .catch(next);
   }

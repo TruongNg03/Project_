@@ -23,18 +23,21 @@ function Register() {
     //
     const [userNormalStyle, setUserNormalStyle] = useState(false);
     const [userAlertStyle, setUserAlertStyle] = useState(false);
-    const [userAlert, setUserAlert] = useState('Account cannot be empty');
+    const [userAlert, setUserAlert] = useState('Tên tài khoản không được để trống');
     const [hideUserAlert, setHideUserAlert] = useState(true);
     //
     const [passNormalStyle, setPassNormalStyle] = useState(false);
     const [passAlertStyle, setPassAlertStyle] = useState(false);
-    const [passAlert, setPassAlert] = useState('Password cannot be empty');
+    const [passAlert, setPassAlert] = useState('Mật khẩu không được để trống');
     const [hidePassAlert, setHidePassAlert] = useState(true);
     //
     const [passAgainNormalStyle, setPassAgainNormalStyle] = useState(false);
     const [passAgainAlertStyle, setPassAgainAlertStyle] = useState(false);
-    const [passAgainAlert, setPassAgainAlert] = useState('Password confirmation cannot be empty');
+    const [passAgainAlert, setPassAgainAlert] = useState('Xác nhận mmật khẩu không được để trống');
     const [hidePassAgainAlert, setHidePassAgainAlert] = useState(true);
+    //
+    const [identityAlert, setIdentityAlert] = useState('Identity không được để trống');
+    const [hideIdentityAlert, setHideIdentityAlert] = useState(true);
 
     const { loading, error, dispatch } = useContext(AuthContext);
 
@@ -68,6 +71,10 @@ function Register() {
         if (user && pass && identity.length >= 6 && passAgain && pass === passAgain) {
             setDisabled(false);
         } else {
+            if (pass !== passAgain) {
+                setHidePassAgainAlert(false);
+                setPassAgainAlert('Đảm bảo mật khẩu bạn nhập cả hai lần đều giống nhau');
+            }
             setDisabled(true);
         }
     };
@@ -81,10 +88,10 @@ function Register() {
         setUserNormalStyle(false);
         if (!user) {
             setDisabled(true);
-            setUserAlert('Account cannot be empty');
+            setUserAlert('Tên tài khoản không được để trống');
         } else if (!validateEmail(user)) {
             setDisabled(true);
-            setUserAlert('Invalid email format');
+            setUserAlert('Định dạng email không đúng');
         } else {
             setHideUserAlert(true);
             setUserAlertStyle(false);
@@ -95,11 +102,15 @@ function Register() {
     const checkVerify = () => {
         const identity = identityCode.current.value;
 
-        setDisabled(true);
-        if (identity.length >= 6) {
-            setDisabled(false);
-        } else {
+        setHideIdentityAlert(false);
+        if (!identity) {
             setDisabled(true);
+            setIdentityAlert('Identity không được để trống');
+        } else if (identity.length < 6) {
+            setDisabled(true);
+            setIdentityAlert('Identity phải ít nhất 6 ký tựtự');
+        } else {
+            setHideIdentityAlert(true);
         }
     };
 
@@ -111,10 +122,10 @@ function Register() {
         setPassNormalStyle(false);
         if (!pass) {
             setDisabled(true);
-            setPassAlert('Password cannot be empty');
+            setPassAlert('Mật khẩu không được để trống');
         } else if (pass.length < 8 || pass.length > 30) {
             setDisabled(true);
-            setPassAlert('Password must be 8-30 characters');
+            setPassAlert('Mật khẩu phải từ 8-30 ký tự');
         } else {
             setHidePassAlert(true);
             setPassAlertStyle(false);
@@ -131,10 +142,10 @@ function Register() {
         setPassAgainNormalStyle(false);
         if (!passAgain) {
             setDisabled(true);
-            setPassAgainAlert('Password confirmation cannot be empty');
+            setPassAgainAlert('Xác nhận mmật khẩu không được để trống');
         } else if (pass !== passAgain || passAgain < 8) {
             setDisabled(true);
-            setPassAgainAlert('Please make sure the password you enter both times is the same');
+            setPassAgainAlert('Đảm bảo mật khẩu bạn nhập cả hai lần đều giống nhau');
         } else {
             setHidePassAgainAlert(true);
             setPassAgainAlertStyle(false);
@@ -199,6 +210,8 @@ function Register() {
                         ref={identityCode}
                         type="number"
                         contentHolder="Identity"
+                        contentAlert={identityAlert}
+                        hideAlerts={hideIdentityAlert}
                         hidePassIcon={true}
                         // hideSend={false}
                         onBlur={checkVerify}
@@ -209,7 +222,7 @@ function Register() {
                         styleNormal={passNormalStyle}
                         showPass={false}
                         maxLength="30"
-                        contentHolder="Password"
+                        contentHolder="Mật khẩu"
                         contentAlert={passAlert}
                         hideContentAlert={hidePassAlert}
                         hideAlerts={hidePassAlert}
@@ -221,7 +234,7 @@ function Register() {
                         styleNormal={passAgainNormalStyle}
                         showPass={false}
                         maxLength="30"
-                        contentHolder="Please enter password again"
+                        contentHolder="Nhập lại mật khẩu"
                         contentAlert={passAgainAlert}
                         hideContentAlert={hidePassAgainAlert}
                         hideAlerts={hidePassAgainAlert}

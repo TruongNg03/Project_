@@ -162,23 +162,32 @@ function EditProfile() {
                     <div className={cx('user-info')}>
                         <div className={cx('username')}>
                             <p className={cx('title')}>Tên</p>
-                            <input
-                                type="text"
-                                placeholder={userInfo.name || 'Name'}
-                                value={userInfo.name || ''}
-                                minLength={'8'}
-                                maxLength={'20'}
-                                onChange={handleChangeName}
-                            />
+                            <div className={cx('username-length')}>
+                                <input
+                                    type="text"
+                                    placeholder={userInfo.name || 'Name'}
+                                    value={userInfo.name || ''}
+                                    minLength={'8'}
+                                    maxLength={'30'}
+                                    onChange={handleChangeName}
+                                />
+                                <p className={cx('text-length')}>{userInfo.name ? userInfo.name.length : 0}/30</p>
+                            </div>
                         </div>
                         <div className={cx('signature')}>
-                            <p className={cx('title')}>ký tên</p>
-                            <input
-                                type="text"
-                                value={userInfo.signature || ''}
-                                placeholder={userInfo.signature || 'Default signature given to everyone~'}
-                                onChange={handleChangeSignature}
-                            />
+                            <p className={cx('title')}>Ký tên</p>
+                            <div className={cx('signature-length')}>
+                                <textarea
+                                    type="text"
+                                    maxLength="200"
+                                    value={userInfo.signature || ''}
+                                    placeholder={userInfo.signature || 'Default signature given to everyone~'}
+                                    onChange={handleChangeSignature}
+                                />
+                                <p className={cx('text-length')}>
+                                    {userInfo.signature ? userInfo.signature.length : 0}/200
+                                </p>
+                            </div>
                         </div>
                         <div className={cx('gender')}>
                             <p className={cx('title')}>Giới tính</p>
@@ -257,7 +266,7 @@ function EditProfile() {
                             }}
                         >
                             <div className={cx('float-header')}>
-                                <p>Modify background image</p>
+                                <p>Thay đổi hình nền</p>
                                 <button onClick={handleShowChangeBg}>
                                     <CloseIcon />
                                 </button>

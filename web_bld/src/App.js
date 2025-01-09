@@ -8,11 +8,21 @@ import { AuthContext } from '~/context/AuthContext';
 function App() {
     const { user } = useContext(AuthContext);
 
+    // user routes
+    const priRoutes = user ? privateRoutes : [];
+    // admin routes
+    const admRoutes = user ? (user.admin ? adminRoutes : []) : [];
+
+    // get all routes
+    const allRoutes = [...publicRoutes, ...priRoutes, ...admRoutes];
+
+    // console.log(allRoutes);
+
     return (
         <Router>
             <div className="App">
                 <Routes>
-                    {publicRoutes.map((route, index) => {
+                    {allRoutes.map((route, index) => {
                         const Page = route.component;
 
                         let Layout = DefaultLayout;
@@ -35,60 +45,6 @@ function App() {
                             />
                         );
                     })}
-
-                    {/* user routes */}
-                    {user &&
-                        privateRoutes.map((route, index) => {
-                            const Page = route.component;
-
-                            let Layout = DefaultLayout;
-
-                            if (route.layout) {
-                                Layout = route.layout;
-                            } else if (route.layout === null) {
-                                Layout = Fragment;
-                            }
-
-                            return (
-                                <Route
-                                    key={index}
-                                    path={route.path}
-                                    element={
-                                        <Layout>
-                                            <Page />
-                                        </Layout>
-                                    }
-                                />
-                            );
-                        })}
-
-                    {/* admin routes */}
-                    {user
-                        ? user.admin &&
-                          adminRoutes.map((route, index) => {
-                              const Page = route.component;
-
-                              let Layout = DefaultLayout;
-
-                              if (route.layout) {
-                                  Layout = route.layout;
-                              } else if (route.layout === null) {
-                                  Layout = Fragment;
-                              }
-
-                              return (
-                                  <Route
-                                      key={index}
-                                      path={route.path}
-                                      element={
-                                          <Layout>
-                                              <Page />
-                                          </Layout>
-                                      }
-                                  />
-                              );
-                          })
-                        : null}
                 </Routes>
             </div>
         </Router>

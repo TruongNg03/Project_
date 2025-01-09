@@ -32,9 +32,7 @@ function DefaultLayout({ children }) {
         <div className={cx('wrapper')}>
             <Header />
             <Menu />
-            <div className="container" style={{ width: '100%' }}>
-                {children}
-            </div>
+            <div className={cx("container")}>{children}</div>
             <Footer />
             {/* btn scroll to top */}
             <div className={cx('scroll-top-btn')} onClick={handleClick} hidden={!show}>

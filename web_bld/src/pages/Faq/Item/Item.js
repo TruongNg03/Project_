@@ -9,13 +9,10 @@ function Item({ header, children }) {
     const itemId = useId();
 
     return (
-        <label htmlFor={'item-' + itemId}>
+        <label className={cx('label-item')} htmlFor={'item-' + itemId}>
             <div className={cx('wrapper')}>
                 <input type="checkbox" id={'item-' + itemId} />
-                <div className={cx('header')}>
-                    <h3>{header}</h3>
-                    {/* add icon instead of pseudo*/}
-                </div>
+                <p className={cx('header')}>{header}</p>
                 <div className={cx('content')}>{children}</div>
             </div>
         </label>

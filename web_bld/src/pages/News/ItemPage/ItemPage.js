@@ -11,7 +11,9 @@ function ItemPage({ img, title, content, link }) {
         <Link to={link} className={cx('wrapper-item')}>
             <Card.Img variant="top" src={img} className={cx('image-item')} alt="img" />
             <Card.Body className={cx('inner')}>
-                <Card.Title className={cx('title')}>{title}</Card.Title>
+                <Card.Title className={cx('title')}>
+                    <p>{title}</p>
+                </Card.Title>
                 <Card.Text className={cx('content')}>{content}</Card.Text>
             </Card.Body>
         </Link>

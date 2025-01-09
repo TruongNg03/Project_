@@ -42,17 +42,16 @@
     thead {
         user-select: none;
     }
+
+    tr {
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
 }
 
 // only id
 .user-id {
     max-width: 130px;
     word-wrap: break-word;
-}
-
-th,
-td {
-    padding: 5px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
 }

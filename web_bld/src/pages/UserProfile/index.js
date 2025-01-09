@@ -37,7 +37,7 @@ function UserProfile() {
                             <thead className={cx('thead')}>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col" className={cx('user-id')}>UserId</th>
+                                    <th scope="col">UserId</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Gender</th>
                                     <th scope="col">Address</th>
@@ -61,7 +61,9 @@ function UserProfile() {
                                             <td>{profile.phone}</td>
                                             <td>{profile.date ? format(profile.date, 'dd-MM-yyyy') : ''}</td>
                                             <td>{profile.signature}</td>
-                                            <td>{profile.idActivity}</td>
+                                            <td className={cx('user-id')}>
+                                                {profile.idActivity ? profile.idActivity : 'none'}
+                                            </td>
                                             <td>{profile.createdAt}</td>
                                             <td>{profile.updatedAt}</td>
                                         </tr>

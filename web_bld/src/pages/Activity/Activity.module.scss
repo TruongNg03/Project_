@@ -179,13 +179,16 @@
 .table {
     width: 100%;
     border-collapse: collapse;
-}
 
-th,
-td {
-    padding: 5px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    thead {
+        user-select: none;
+    }
+
+    tr {
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
 }
 
 .all-btn-link {
@@ -196,6 +199,7 @@ td {
     gap: 5px;
 
     .btn-link {
+        margin: 0;
         padding: 5px;
         color: #0f6efd;
         cursor: pointer;

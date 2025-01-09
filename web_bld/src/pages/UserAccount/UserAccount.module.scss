@@ -46,13 +46,12 @@
     thead > tr > .password {
         cursor: pointer;
     }
-}
 
-th,
-td {
-    padding: 5px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    tr {
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
 }
 
 // only id
@@ -89,6 +88,7 @@ td {
     gap: 5px;
 
     .btn-link {
+        margin: 0;
         padding: 5px;
         color: #0f6efd;
         cursor: pointer;

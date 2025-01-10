@@ -110,8 +110,8 @@ function Header() {
                 //
                 break;
             case 'Log out':
-                // localStorage.clear();
-                localStorage.removeItem('user');
+                // sessionStorage.clear();
+                sessionStorage.removeItem('user');
                 window.location.replace('http://localhost:3001');
                 break;
             default:
@@ -132,7 +132,7 @@ function Header() {
                 {user ? (
                     user.admin ? (
                         <div className={cx('action')}>
-                            <p style={{ fontSize: '1.6rem', userSelect: 'none' }}>Admin</p>
+                            <p style={{ margin: 0, fontSize: '1.6rem', userSelect: 'none' }}>Admin</p>
                             <Menu items={adminMenu} onChange={handleMenuChange}>
                                 <Image className={cx('user-avatar')} src="https://i.imgur.com/ahQ0Jib.jpeg" alt="img" />
                             </Menu>

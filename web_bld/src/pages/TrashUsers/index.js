@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 function TrashUsers() {
     const [showListUsers, setShowListUsers] = useState(true);
-    const [showPassword, setShowPassword] = useState(false);
+    // const [showPassword, setShowPassword] = useState(false);
     const [showNotify, setShowNotify] = useState(false);
     const [allUsers, setAllUser] = useState();
     const [userId, setUserId] = useState();
@@ -30,9 +30,9 @@ function TrashUsers() {
         setShowListUsers(!showListUsers);
     };
 
-    const handleShowPass = () => {
-        setShowPassword(!showPassword);
-    };
+    // const handleShowPass = () => {
+    //     setShowPassword(!showPassword);
+    // };
 
     // restore user
     const handleRestoreUser = async (e) => {

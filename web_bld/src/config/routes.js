@@ -1,5 +1,5 @@
 const getUserId = () => {
-    return localStorage.getItem('userId') || 'none';
+    return sessionStorage.getItem('userId') || 'none';
 };
 
 const routes = {

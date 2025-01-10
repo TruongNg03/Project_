@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Profile = require('../models/Profile');
+const { verifyToken } = require('../middlewares/authMiddleware');
+const { generateToken } = require('../middlewares/jwt');
 
 class AuthController {
   index(req, res, next) {
@@ -103,19 +105,19 @@ class AuthController {
               // show username when login
               console.log('-- ' + user.username + ' login');
 
+              // generate token
               const token = jwt.sign(
-                { id: user._id, admin: user.admin },
+                { _id: user._id, user: user.username },
                 process.env.JWT_SECRET, // 'admin_00' -> process.env.JWt_SECRET
-                { expiresIn: '1 days' }, // 10s
+                { expiresIn: '12h' }, // 10s
               );
 
-              const { password, ...otherDetails } = user._doc;
               res
                 .cookie('access_token', token, {
                   httpOnly: true,
                 })
                 .status(200)
-                .json({ ...otherDetails });
+                .json({ _id: user._id, username: user.username, token: token });
             })
             .catch(next);
         }

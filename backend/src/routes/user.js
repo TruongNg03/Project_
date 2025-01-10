@@ -1,14 +1,7 @@
 const express = require('express');
 const router = express.Router();
-// const verifyUser = require('../util/verifyUser');
-// const verifyAdmin = require('../util/verifyAdmin');
 
 const userController = require('../app/controllers/UserController');
-
-// check authentication token
-// router.get('/authentication/:id', verifyUser, (req, res, next) => {
-//   res.send('hello user, you are logged in');
-// });
 
 // user
 router.put('/:id', userController.update);

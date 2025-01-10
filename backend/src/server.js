@@ -10,7 +10,6 @@ require('dotenv').config();
 
 // middleware
 const SortMiddleware = require('./app/middlewares/SortMiddleware');
-// const CheckToken = require('./app/middlewares/auth');
 
 const app = express();
 const port = 8080;
@@ -37,21 +36,20 @@ app.use(cookieParser());
 
 // custom middleware
 app.use(SortMiddleware);
-// app.use(CheckToken);
 
 // http logger
 // app.use(morgan('combined'));
 
-app.use((err, req, res, next) => {
-  const errorStatus = err.status || 500;
-  const errorMessage = err.message || 'Something went wrong!';
-  return res.status(errorStatus).json({
-    success: false,
-    status: errorStatus,
-    message: errorMessage,
-    stack: err.stack,
-  });
-});
+// app.use((err, req, res, next) => {
+//   const errorStatus = err.status || 500;
+//   const errorMessage = err.message || 'Something went wrong!';
+//   return res.status(errorStatus).json({
+//     success: false,
+//     status: errorStatus,
+//     message: errorMessage,
+//     stack: err.stack,
+//   });
+// });
 
 app.engine(
   'hbs',
